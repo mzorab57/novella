@@ -63,8 +63,8 @@ const Hero = () => {
           />
         ))}
         <div className="absolute inset-0 bg-gradient-to-r from-black/60  to-black/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60  to-black/40" />
-        <div className="absolute top-0 right-10 w-96 h-96 rounded-full bg-red-600/50 blur-[320px] animate-pulse" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#141414]  to-[#141414]/60" />
+        <div className="absolute top-0 right-10 w-96 h-96 rounded-full bg-red-600/60 blur-[320px] animate-pulse" />
       </div>
 
       <div className="absolute inset-0 bg-grid opacity-100 z-0" />
@@ -146,7 +146,7 @@ const Hero = () => {
         {/* Stats */}
         <div
           ref={statsRef}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-px   border-white/30 border-t border-border"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-px   border-white/30 border-t "
         >
           {stats.map(({ value, label, suffix }, i) => (
             <div

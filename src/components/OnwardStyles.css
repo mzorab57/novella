@@ -1,0 +1,121 @@
+/* --- Desktop Styles (350vh for smooth scroll) --- */
+.onward-container {
+  background-color: #141414;
+  height: 350vh; 
+  position: relative;
+}
+
+.sticky-wrapper {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+/* ─── Wave Animation ─── */
+.wave-path {
+  animation: waveMove 2s ease-in-out infinite;
+}
+
+@keyframes waveMove {
+  0% {
+    d: path("M-10,20 Q30,0 73,20 T157,20 T240,20 T320,20 L320,35 L-10,35 Z");
+  }
+  25% {
+    d: path("M-10,15 Q40,30 80,15 T160,18 T240,12 T320,18 L320,35 L-10,35 Z");
+  }
+  50% {
+    d: path("M-10,22 Q35,8 75,22 T155,16 T238,22 T320,16 L320,35 L-10,35 Z");
+  }
+  75% {
+    d: path("M-10,12 Q45,28 78,12 T158,20 T242,14 T320,22 L320,35 L-10,35 Z");
+  }
+  100% {
+    d: path("M-10,20 Q30,0 73,20 T157,20 T240,20 T320,20 L320,35 L-10,35 Z");
+  }
+}
+
+.fixed-left-text, .fixed-right-text {
+  position: absolute;
+  width: 400px;
+  z-index: 1;
+}
+
+.fixed-left-text { left: 10%; }
+.fixed-right-text { right: 10%; }
+
+.text-box { text-align: left; }
+.step-tag { color: #F05A25; font-weight: bold; font-size: 0.9rem; letter-spacing: 2px; display: block; margin-bottom: 10px; }
+.text-box h3 { font-size: 3.5rem; color: white; margin-bottom: 20px; line-height: 1.1; }
+.text-box p { color: #888; line-height: 1.6; font-size: 1.1rem; }
+.learn-more { color: white; text-decoration: underline; margin-top: 15px; display: inline-block; }
+
+.visuals-layer {
+  position: absolute;
+  left: 5%;
+  z-index: 10;
+  width: 250px;
+}
+
+.logo-n-wrapper { width: 100%; }
+.logo-svg { width: 100%; height: auto; }
+
+/* --- Mobile & Tablet Styles (بەو شێوەیەی داوات کرد) --- */
+@media (max-width: 900px) {
+  .onward-container {
+    height: 300vh; /* هێشتا بەرزی زۆرە تا ڕەنگەکە بە جوانی بگۆڕێت */
+  }
+
+  .sticky-wrapper {
+    flex-direction: column;
+    justify-content: space-between; /* دابەشکردنی سەرەوە، ناوەڕاست، خوارەوە */
+    padding: 20px 20px;
+    box-sizing: border-box;
+  }
+
+  /* تێکستی یەکەم دێتە سەرەوە */
+  .fixed-right-text {
+    position: relative;
+    top: 0;
+    right: 0;
+    width: 100%;
+    order: 1;
+    text-align: center;
+  }
+
+  /* پیتی N لە ناوەڕاست جێگیر دەبێت */
+  .visuals-layer {
+    position: relative;
+    left: 0;
+    width: 200px;
+    order: 2;
+    margin: 0 auto;
+    transform: none !important; /* لادانی جوڵەی ئاسۆیی */
+  }
+
+  /* تێکستی دووەم دێتە خوارەوە */
+  .fixed-left-text {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    order: 3;
+    text-align: center;
+  }
+
+  /* ڕێکخستنی قەبارەی فۆنتەکان بۆ مۆبایل */
+  .text-box h3 {
+    font-size: 2.5rem;
+  }
+  
+  .text-box p {
+    font-size: 0.95rem;
+    max-width: 90%;
+    /* margin: 0 auto; */
+  }
+  
+ 
+}
