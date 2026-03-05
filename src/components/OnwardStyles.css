@@ -40,8 +40,9 @@
 
 .fixed-left-text, .fixed-right-text {
   position: absolute;
-  width: 400px;
+  width: 500px;
   z-index: 1;
+  
 }
 
 .fixed-left-text { left: 10%; }
@@ -49,8 +50,8 @@
 
 .text-box { text-align: left; }
 .step-tag { color: #F05A25; font-weight: bold; font-size: 0.9rem; letter-spacing: 2px; display: block; margin-bottom: 10px; }
-.text-box h3 { font-size: 3.5rem; color: white; margin-bottom: 20px; line-height: 1.1; }
-.text-box p { color: #888; line-height: 1.6; font-size: 1.1rem; }
+.text-box h3 { font-size: 4.5rem; color: white; margin-bottom: 20px; line-height: 1.1; }
+.text-box p { color: #888; line-height: 1.6; font-size: 1.5rem; }
 .learn-more { color: white; text-decoration: underline; margin-top: 15px; display: inline-block; }
 
 .visuals-layer {

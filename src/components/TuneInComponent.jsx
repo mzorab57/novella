@@ -2,20 +2,6 @@ import React from 'react';
 import './TuneInStyles.css';
 
 const TuneInComponent = () => {
-  // لیستی وێنەکان بۆ ئەوەی کۆدەکە پاکتر بێت
-  const images = [
-    "https://cdn.prod.website-files.com/66b1e669bf6b613debec2857/66b7893519975564a4b21155_Mask%20group-4.jpg",
-    "https://cdn.prod.website-files.com/66b1e669bf6b613debec2857/66b7893519975564a4b21152_Mask%20group-6.jpg",
-    "https://cdn.prod.website-files.com/66b1e669bf6b613debec2857/66b789352a99352ecdf3b4f4_Mask%20group.jpg",
-    "https://cdn.prod.website-files.com/66b1e669bf6b613debec2857/66b789352a99352ecdf3b4d2_Mask%20group-1.jpg",
-    "https://cdn.prod.website-files.com/66b1e669bf6b613debec2857/66b78935e63e989b8d01d42d_Mask%20group-2.jpg",
-    "https://cdn.prod.website-files.com/66b1e669bf6b613debec2857/66b789352c6bdb116740ad38_Mask%20group-3.jpg",
-    "https://cdn.prod.website-files.com/66b1e669bf6b613debec2857/66b789356d82f6e839e72f29_Screenshot%202024-06-11%20at%2011.16%201_9.jpg",
-    "https://cdn.prod.website-files.com/66b1e669bf6b613debec2857/66b78935f5f5d1125ab2edcd_Mask%20group-5.jpg",
-    "https://cdn.prod.website-files.com/66b1e669bf6b613debec2857/66b789354d3e9cef94242a53_Mask%20group-7.jpg",
-    "https://cdn.prod.website-files.com/66b1e669bf6b613debec2857/66b78935e63e989b8d01d3e9_Mask%20group-8.jpg"
-  ];
-
   return (
     <section className="tunein-section" data-theme="dark">
       {/* ═══ HERO ═══ */}

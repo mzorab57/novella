@@ -36,24 +36,36 @@ const OnwardSection = () => {
 
   return (
     <section ref={containerRef} className="onward-container">
+      
+
+{/* line blur newan tabax pity N */}
+        <div  className='absolute -top-5 h-10 w-full bg-[#141414] blur-md z-10 '></div>
+
+        <div className="absolute inset-0 bg-grid opacity-100 z-0" />
       <div className="sticky-wrapper max-w-7xl mx-auto">
+        
         
         {/* تێکستی یەکەم - لە مۆبایلدا لە سەرەوەیە */}
         <motion.div className="fixed-right-text text-box-wrapper max-w-lg mx-auto text-center" style={{ opacity: textOneOpacity }}>
           <div className="text-box mt-24 lg:mt-0 max-w-lg text-center">
            
-            <h3 className=''><em className='text-primary'>Turn On</em> & Drive Growth Goals</h3>
-            <p className=''>The game changes when your core values connect with your offering. You unlock new audiences and your team’s potential.</p>
+            <h3 className='font-playfair '><em className='text-primary'>Turn On</em> & Drive Growth Goals</h3>
+            <p className='font-cormorant italic'>The game changes when your core values connect with your offering. You unlock new audiences and your team’s potential.</p>
            
           </div>
         </motion.div>
-
+<div className="absolute -top-40 inset-0  animate-pulse bg-[radial-gradient(ellipse_at_center,rgba(198,30,30,0.1)_0%,transparent_60%)]" />
+ 
         {/* پیتی N - لە مۆبایلدا لە ناوەڕاست جێگیرە بەڵام ڕەنگەکەی دەگۆڕێت */}
         {/* پیتی N بە ئەنیمەیشنی Wave */}
         <motion.div className="visuals-layer " style={{ x: moveX }}>
-          <div className="visual-group size-72 md:size-80 lg:size-96  -translate-x-16 lg:translate-x-0 ">
+            
+          <div className="visual-group  size-72 md:size-80 lg:size-96  -translate-x-16 lg:translate-x-0 ">
             <div className="logo-n-wrapper ">
-              <svg viewBox="0 0 294 332" className="logo-svg">
+                 {/* Radial glow behind */}
+        {/* <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(198,30,30,0.2)_20%,transparent_60%)]" /> */}
+              <svg viewBox="0 0 294 332" className="logo-svg ">
+                
                 <defs>
                   {/* Wave clipPath */}
                   <clipPath id="waveClip">
@@ -116,8 +128,8 @@ const OnwardSection = () => {
         <motion.div className="fixed-left-text text-box-wrapper max-w-lg text-center " style={{ opacity: textTwoOpacity }}>
           <div className="text-box  max-w-lg pt-14 md:pt-0">
            
-            <h3 cclassName='text-center'><em className='text-primary'>Tune In</em> & Transform Internal Culture</h3>
-            <p>Something magical happens when you tap into what you believe, and then translate that into how you hire, treat, and structure your team.</p>
+            <h3 ><em className='text-primary font-playfair'>Tune In</em> & Transform Internal Culture</h3>
+            <p className='font-cormorant italic '>Something magical happens when you tap into what you believe, and then translate that into how you hire, treat, and structure your team.</p>
            
           </div>
         </motion.div>

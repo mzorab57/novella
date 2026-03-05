@@ -92,16 +92,18 @@ const WaveAnimation = () => (
 );
 
 // ═══ FLOATING PARTICLES ═══
+const PARTICLES = Array.from({ length: 25 }, (_, i) => ({
+  id: i,
+  left: Math.random() * 100,
+  top: Math.random() * 100,
+  size: Math.random() * 4 + 1,
+  duration: Math.random() * 15 + 10,
+  delay: Math.random() * 8,
+  opacity: Math.random() * 0.4 + 0.1,
+}));
+
 const FloatingParticles = () => {
-  const particles = Array.from({ length: 25 }, (_, i) => ({
-    id: i,
-    left: Math.random() * 100,
-    top: Math.random() * 100,
-    size: Math.random() * 4 + 1,
-    duration: Math.random() * 15 + 10,
-    delay: Math.random() * 8,
-    opacity: Math.random() * 0.4 + 0.1,
-  }));
+  const particles = PARTICLES;
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">

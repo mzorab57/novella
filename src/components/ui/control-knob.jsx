@@ -21,6 +21,16 @@ const SPRING_CONFIG = {
   mass: 0.8,
 };
 
+const FLOATING_PARTICLES = Array.from({ length: 30 }, (_, i) => ({
+  id: i,
+  left: Math.random() * 100,
+  top: Math.random() * 100,
+  y: -200 - Math.random() * 300,
+  x: (Math.random() - 0.5) * 100,
+  duration: 6 + Math.random() * 8,
+  delay: Math.random() * 10,
+}));
+
 // ═══════════════════════════════════════════════════════
 // REACTOR KNOB COMPONENT
 // ═══════════════════════════════════════════════════════
@@ -92,10 +102,10 @@ function ReactorKnob({
 
   const colorMap = {
     orange: { hex: "#f97316", rgb: "249, 115, 22", tw: "text-orange-600" },
-    red: { hex: "#d4a574", rgb: "212, 165, 116", tw: "text-red-600" },
+    red: { hex: "#C61E1E", rgb: "212, 165, 116", tw: "text-red-600" },
     gold: { hex: "#c9a96e", rgb: "201, 169, 110", tw: "text-yellow-600" },
   };
-  const c = colorMap[accentColor] || colorMap.orange;
+  const c = colorMap[accentColor] || colorMap.red;
 
   return (
     <div className="relative select-none " style={{ width: containerSize, height: containerSize + 64 }}>
@@ -104,8 +114,8 @@ function ReactorKnob({
         className="absolute rounded-full"
         style={{
           inset: containerSize * 0.1,
-          background: c.hex,
-          filter: "blur(40px)",
+          background: "#C61E1E",
+          filter: "blur(70px)",
           opacity: lightOpacity,
         }}
       />
@@ -121,7 +131,7 @@ function ReactorKnob({
               className="absolute top-0 left-1/2 h-full"
               style={{ width: 3, transform: `translateX(-50%) rotate(${angle}deg)` }}
             >
-              <TickMark currentRotation={smoothRotation} angle={angle} color={c.hex} rgb={c.rgb} />
+              <TickMark currentRotation={smoothRotation} angle={angle} color={"#C61E1E"} rgb={c.rgb} />
             </div>
           );
         })}
@@ -129,6 +139,7 @@ function ReactorKnob({
 
 {/* geji zia krdn w kam krdn */}
       <div
+      
         className="absolute"
         style={{
           top: "50%",
@@ -157,8 +168,8 @@ function ReactorKnob({
                 style={{
                   width: 5,
                   height: 16,
-                  backgroundColor: c.hex,
-                  boxShadow: useTransform(rawRotation, (r) => `0 0 ${Math.max(5, (r + 135) / 10)}px ${c.hex}`),
+                  backgroundColor: "#C61E1E",
+                  boxShadow: useTransform(rawRotation, (r) => `0 0 ${Math.max(5, (r + 135) / 10)}px #C61E1E`),
                 }}
               />
               <div className="flex flex-col items-center mt-4 opacity-50">
@@ -175,7 +186,7 @@ function ReactorKnob({
         style={{ bottom: -8 }}
       >
         <span className="text-[9px] text-neutral-600 font-mono tracking-[0.2em] mb-1">{outputLabel}</span>
-        <DisplayValue value={displayValue} defaultVal={defaultValue} color={c} />
+        <DisplayValue value={displayValue} defaultVal={defaultValue} color={"#C61E1E"} />
       </div>
     </div>
   );
@@ -322,27 +333,27 @@ function CooktopIllustration({ className }) {
 // FLOATING PARTICLES
 // ═══════════════════════════════════════════════════════
 function FloatingParticles() {
-  const particles = Array.from({ length: 30 });
+  const particles = FLOATING_PARTICLES;
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {particles.map((_, i) => (
+      {particles.map((p) => (
         <motion.div
-          key={i}
+          key={p.id}
           className="absolute w-px h-px bg-red-400/30 rounded-full"
           style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
+            left: `${p.left}%`,
+            top: `${p.top}%`,
           }}
           animate={{
-            y: [0, -200 - Math.random() * 300],
-            x: [0, (Math.random() - 0.5) * 100],
+            y: [0, p.y],
+            x: [0, p.x],
             opacity: [0, 0.6, 0],
             scale: [0, 1.5, 0],
           }}
           transition={{
-            duration: 6 + Math.random() * 8,
+            duration: p.duration,
             repeat: Infinity,
-            delay: Math.random() * 10,
+            delay: p.delay,
             ease: "easeOut",
           }}
         />
@@ -381,16 +392,10 @@ function SpecCard({ icon, title, value, unit, delay }) {
 // MAIN PAGE COMPONENT
 // ═══════════════════════════════════════════════════════
 export default function NovellaCooktopPage() {
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
-    <div className="min-h-screen  text-neutral-100 overflow-x-hidden">
+    <div
+    
+     className="min-h-screen  text-neutral-100 overflow-x-hidden">
       {/* ═══ NAVIGATION ═══ */}
       <motion.nav
         className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-5 flex items-center justify-between"
@@ -419,22 +424,24 @@ export default function NovellaCooktopPage() {
 
 
       {/* ═══ INTERACTIVE CONTROL SECTION ═══ */}
-      <section id="control" className="relative py-28 md:py-40">
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-700/10 to-transparent" />
-
+      <section 
+      id="control" className="relative py-28 md:py-40 overflow-hidden">
+         <div  className='absolute -top-5 h-20 w-full bg-[#141414] blur-md z-10 '></div>
+        {/* <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-700/10 to-transparent" /> */}
+   <div className="absolute top-40 left-20 size-24 rounded-full bg-red-900 blur-[90px] " />
         {/* Radial glow behind */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(201,169,110,0.02)_0%,transparent_60%)]" />
+        <div className="absolute -bottom-20   inset-0 bg-[radial-gradient(ellipse_at_center,rgba(198,30,30,0.05)_0%,transparent_40%)]" />
 
-        <div className="max-w-7xl  mx-auto px-6 md:px-12">
+        <div className="max-w-7xl   mx-auto px-6 md:px-12">
           <div className="text-start md:text-center  mb-20 ">
            
             <Reveal delay={0.1}>
-              <h2 className=" text-5xl lg:text-8xl tracking-wide leading-tight mb-6">
+              <h2 className="font-playfair text-5xl lg:text-8xl tracking-wide leading-tight mb-6">
                 Intuitive <span className="text-red-500/70">Control</span>
               </h2>
             </Reveal>
             <Reveal delay={0.2}>
-              <p className=" text-lg text-neutral-500 font-light max-w-2xl text-start md:text-center mx-auto">
+              <p className="font-cormorant italic text-lg text-neutral-500 font-light max-w-2xl text-start md:text-center mx-auto">
                 Each zone features an independently calibrated haptic dial — responsive, precise, and satisfying. Drag the
                 knobs below to experience the interface.
               </p>
@@ -443,6 +450,7 @@ export default function NovellaCooktopPage() {
 
           {/* Interactive Knobs Grid tabaxaka */}
           <Reveal delay={0.3}>
+            
             <div className="relative max-w-4xl border border-neutral-800/60 bg-neutral-900/40 px-4 mx-auto">
               
               <div className="absolute -inset-6 border border-neutral-800/30 rounded-sm" />
@@ -452,13 +460,14 @@ export default function NovellaCooktopPage() {
               <div className="absolute -inset-6 -bottom-3 -right-3 w-5 h-5 border-b border-r border-red-700 top-auto left-auto" />
 
               <div className="grid grid-cols-2  gap-8 py-12">
+                <div className="absolute inset-0 bg-grid opacity-100 z-0" />
                 {[
                   { label: "FRONT-L", output: "ZONE 1", defaultValue: 72, accent: "orange" },
                   { label: "FRONT-R", output: "ZONE 2", defaultValue: 45, accent: "orange" },
                   { label: "REAR-L", output: "ZONE 3", defaultValue: 28, accent: "orange" },
                   { label: "REAR-R", output: "ZONE 4", defaultValue: 91, accent: "orange" },
                 ].map((knob, i) => (
-                  <div key={i} className="flex flex-col scale-75 md:scale-100 items-center">
+                  <div key={i} className="flex flex-col scale-75 md:scale-95 items-center">
                     <ReactorKnob
                       size="sm"
                       label={knob.label}

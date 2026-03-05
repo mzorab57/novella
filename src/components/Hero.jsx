@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { ChevronDown, Zap, Shield, Star } from "lucide-react";
-import heroCooktop2 from "/assets/images/hero2.jpeg";
-import heroCooktop3 from "/assets/images/hero3.png";
-import heroCooktop4 from "/assets/images/hero.jpeg";
+
 import heroCooktop from "/assets/images/see-through.jpg";
+import heroCooktop3 from "/assets/images/hero3.png";
+import heroCooktop2 from "/assets/images/hero2.jpeg";
 import { useInView } from "../hooks/useInView";
 import Kondo from "./Kondo";
 
@@ -14,12 +13,6 @@ const stats = [
   { value: "2000", label: "Max Watts", suffix: "W" },
   { value: "9", label: "Heat Levels", suffix: "" },
   { value: "100", label: "Safe & Efficient", suffix: "%" },
-];
-
-const features = [
-  { icon: Zap, title: "Instant Heat", desc: "Magnetic field heats cookware directly — zero wasted energy" },
-  { icon: Shield, title: "Auto Safety Off", desc: "Smart shutdown after 2 hours of inactivity for total peace of mind" },
-  { icon: Star, title: "Precision Control", desc: "9 heat levels from gentle simmer to powerful booster mode" },
 ];
 
 const heroImages = [heroCooktop, heroCooktop2, heroCooktop3];
@@ -41,14 +34,10 @@ const Hero = () => {
     return () => clearInterval(slideInterval);
   }, []);
 
-  const scrollDown = () => {
-    document.getElementById("products")?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center overflow-hidden bg-background"
+      className="relative min-h-screen font-Playfair flex items-center overflow-hidden bg-background"
     >
       {/* Background image */}
       <div className="absolute inset-0 z-0">
@@ -67,10 +56,11 @@ const Hero = () => {
         <div className="absolute top-0 right-10 w-96 h-96 rounded-full bg-red-600/60 blur-[320px] animate-pulse" />
       </div>
 
+{/* bg grid */}
       <div className="absolute inset-0 bg-grid opacity-100 z-0" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
-        <div className="max-w-3xl">
+        <div className="max-w-3xl font-Playfair">
 
           {/* Badge */}
          {/*  <div
@@ -85,22 +75,22 @@ const Hero = () => {
           </div>*/}
 
           {/* Heading */}
-          <h1
-            className={`font-montserrat font-black leading-none mb-6 transition-all duration-700 delay-100 ${
+          <h4
+            className={`font-playfair font-Playfair leading-none mb-6 transition-all duration-700 delay-100 ${
               loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
-            <span className="block text-5xl sm:text-6xl lg:text-8xl text-white">
+            <span className="block  text-5xl sm:text-6xl lg:text-8xl text-white">
               WAVE OF
             </span>
             <span className="block text-5xl sm:text-6xl lg:text-8xl text-gradient-red">
               INNOVATION
             </span>
-          </h1>
+          </h4>
 
           {/* Subtitle */}
           <p
-            className={`text-white/50 text-lg sm:text-xl mb-10 transition-all duration-700 delay-200 ${
+            className={`text-white/50 italic font-cormorant text-lg sm:text-xl mb-10 transition-all duration-700 delay-200 ${
               loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
@@ -158,21 +148,15 @@ const Hero = () => {
             >
               <div className="text-3xl text-white font-black ">
                 {value}
-                <span className="text-red-600">{suffix}</span>
+                <span className="text-red-600 font-cormorant italic">{suffix}</span>
               </div>
-              <div className="text-xs tracking-widest uppercase text-white/50">{label}</div>
+              <div className="text-xs tracking-widest uppercase text-white/50 font-cormorant italic">{label}</div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Scroll */}
-      <button
-        onClick={scrollDown}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce"
-      >
-        <ChevronDown size={18} />
-      </button>
+    
    
    
     </section>
