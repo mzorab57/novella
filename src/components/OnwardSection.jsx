@@ -41,7 +41,9 @@ const OnwardSection = () => {
 {/* line blur newan tabax pity N */}
         <div  className='absolute -top-5 h-10 w-full bg-[#141414] blur-md z-10 '></div>
 
-        <div className="absolute inset-0 bg-grid opacity-100 z-0" />
+{/* grid krdny bg */}
+      <div className="absolute inset-0 bg-grid opacity-100 z-0" />
+
       <div className="sticky-wrapper max-w-7xl mx-auto">
         
         
@@ -49,8 +51,8 @@ const OnwardSection = () => {
         <motion.div className="fixed-right-text text-box-wrapper max-w-lg mx-auto text-center" style={{ opacity: textOneOpacity }}>
           <div className="text-box mt-24 lg:mt-0 max-w-lg text-center">
            
-            <h3 className='font-playfair '><em className='text-primary'>Turn On</em> & Drive Growth Goals</h3>
-            <p className='font-cormorant italic'>The game changes when your core values connect with your offering. You unlock new audiences and your team’s potential.</p>
+            <h3 className='font-playfair '><em className='text-primary'>B2B </em> & PARTNERSHIPS</h3>
+            <p className='font-cormorant italic'>Power your commercial kitchen with Novella's industrial-grade induction solutions. Tailored packages for businesses of every scale.</p>
            
           </div>
         </motion.div>
@@ -128,8 +130,13 @@ const OnwardSection = () => {
         <motion.div className="fixed-left-text text-box-wrapper max-w-lg text-center " style={{ opacity: textTwoOpacity }}>
           <div className="text-box  max-w-lg pt-14 md:pt-0">
            
-            <h3 ><em className='text-primary font-playfair'>Tune In</em> & Transform Internal Culture</h3>
-            <p className='font-cormorant italic '>Something magical happens when you tap into what you believe, and then translate that into how you hire, treat, and structure your team.</p>
+            <h3 ><em className='text-primary font-playfair'>Why </em> & Partner with Novella?</h3>
+            <p className='font-cormorant italic '>Volume pricing & exclusive discounts,
+Dedicated account manager, 
+Priority technical support, 
+Flexible payment terms, 
+Custom installation solutions, 
+Extended warranty programs.</p>
            
           </div>
         </motion.div>

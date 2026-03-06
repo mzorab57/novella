@@ -360,8 +360,12 @@ const GoalSection = () => {
 
             {/* Right — Illustration */}
             <div className="relative   ">
-              <ParallaxSection className="sticky  lg:h-[37rem]  h-[31rem]  ">
+
+        
+              <ParallaxSection className="sticky  lg:h-[37rem]  h-[31rem] p-2 ">
+                
                 <div className="relative   border border-primary/20 p-6 bg-[#1A1A1A]/50">
+                {/* <div className="absolute inset-0 bg-grid  opacity-50 z-10 " /> */}
                   {/* Frame */}
                   <div className="absolute -inset-4 border border-primary/50  shadow-[0_6px_30px_10px_rgba(198,30,30,0.2)]" />
                   <div className="absolute -top-2 -left-2 w-6 h-6 border-t border-l border-primary" />
@@ -374,9 +378,9 @@ const GoalSection = () => {
                   </div>
 
                   {/* Label */}
-                  <div className="absolute -bottom-8 right-0 flex items-center gap-3">
+                  <div className="absolute -bottom-10 right-0 flex items-center gap-3">
                     <div className="w-8 h-px bg-primary/90" />
-                    <span className="font-mono text-[9px] text-neutral-400 tracking-[0.3em] uppercase">Fig. 01</span>
+                    <span className="font-mono text-[12px] text-neutral-400 tracking-[0.3em] uppercase">Fig. 01</span>
                   </div>
                 </div>
               </ParallaxSection>
@@ -401,10 +405,11 @@ const GoalSection = () => {
             <div className="relative order-2 lg:order-1">
                
               <div className="relative   ">
-              <ParallaxSection className="sticky  lg:h-[37rem] h-[30rem]  ">
+              <ParallaxSection className="sticky  lg:h-[37rem] h-[30rem] p-2 ">
                 <div className="relative   border border-primary/20 p-6 bg-[#1A1A1A]/50">
+                
                   {/* Frame */}
-                  <div className="absolute -inset-4 border border-primary/50  shadow-[0_6px_30px_10px_rgba(198,30,30,0.2)]" />
+                  <div className="absolute -inset-4 border border-primary/5  shadow-[0_6px_30px_10px_rgba(198,30,30,0.2)]" />
                   <div className="absolute -top-2 -left-2 w-6 h-6 border-t border-l border-primary" />
                   <div className="absolute -top-2 -right-2 w-6 h-6 border-t border-r border-primary" />
                   <div className="absolute -bottom-2 -left-2 w-6 h-6 border-b border-l border-primary" />
@@ -415,9 +420,9 @@ const GoalSection = () => {
                   </div>
 
                   {/* Label */}
-                  <div className="absolute -bottom-8 right-0 flex items-center gap-3">
+                  <div className="absolute -bottom-10 right-0 flex items-center gap-3">
                     <div className="w-8 h-px bg-primary/90" />
-                    <span className="font-mono text-[9px] text-neutral-400 tracking-[0.3em] uppercase">Fig. 01</span>
+                    <span className="font-mono text-[12px] text-neutral-400 tracking-[0.3em] uppercase">Fig. 01</span>
                   </div>
                 </div>
               </ParallaxSection>
@@ -583,8 +588,9 @@ const GoalSection = () => {
             {/* Right — Illustration */}
        
               
-              <ParallaxSection className="sticky  lg:h-[37rem] h-[31rem]  ">
+              <ParallaxSection className="sticky  lg:h-[37rem] h-[31rem] p-2 ">
                 <div className="relative   border border-primary/20 p-6 bg-[#1A1A1A]/50">
+                 
                   {/* Frame */}
                   <div className="absolute -inset-4 border border-primary/50  shadow-[0_6px_30px_10px_rgba(198,30,30,0.2)]" />
                   <div className="absolute -top-2 -left-2 w-6 h-6 border-t border-l border-primary" />
@@ -597,9 +603,9 @@ const GoalSection = () => {
                   </div>
 
                   {/* Label */}
-                  <div className="absolute -bottom-8 right-0 flex items-center gap-3">
+                  <div className="absolute  -bottom-10 right-0 flex items-center gap-3">
                     <div className="w-8 h-px bg-primary/90" />
-                    <span className="font-mono text-[9px] text-neutral-400 tracking-[0.3em] uppercase">Fig. 01</span>
+                    <span className="font-mono text-[12px]  text-neutral-400 tracking-[0.3em] uppercase">Fig. 01</span>
                   </div>
                 </div>
               </ParallaxSection>

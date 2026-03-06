@@ -18,7 +18,7 @@ export default {
   				foreground: 'hsl(var(--primary-foreground))'
   			},
   			secondary: {
-  				DEFAULT: 'hsl(var(--secondary))',
+  				DEFAULT: 'linear-gradient(135deg, hsl(0 85% 60%), hsl(0 90% 45%))',
   				foreground: 'hsl(var(--secondary-foreground))'
   			},
   			muted: {

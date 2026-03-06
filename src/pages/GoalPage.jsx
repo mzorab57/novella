@@ -1,6 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, useSpring, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
+import goalBg from '../assets/goal-hero.jpeg'
+
+
 
 /* ═══════════════════════════════════════════════════
    SCROLL PROGRESS BAR
@@ -48,7 +51,25 @@ function ParallaxSection({ children, className = "" }) {
     target: ref,
     offset: ["start end", "end start"],
   });
-  const y = useTransform(scrollYProgress, [0, 1], [60, -60]);
+  const y = useTransform(scrollYProgress, [0, 1], [160, -130]);
+
+  return (
+    <div ref={ref} className={`relative overflow-hidden ${className}`}>
+      <motion.div style={{ y }}>
+        {children}
+      </motion.div>
+    </div>
+  );
+}
+
+
+function ParallaxSection2({ children, className = "" }) {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["end start", "start end"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
 
   return (
     <div ref={ref} className={`relative overflow-hidden ${className}`}>
@@ -505,44 +526,34 @@ export default function GoalPage() {
     <div className="min-h-screen bg-luxury-dark text-luxury-cream overflow-x-hidden noise-texture">
          
       <ScrollProgress />
-      <SideNav />
+      
 
-      {/* ═══ FIXED BACK BUTTON ═══ */}
-      <Link
-        to="/"
-        className="fixed top-6 left-6 z-50 flex items-center gap-3 group"
-      >
-        <div className="w-10 h-10 border border-primary/20 flex items-center justify-center bg-luxury-dark/80 backdrop-blur-xl group-hover:border-primary/50 transition-all duration-500">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-primary/70 group-hover:text-primary transition-colors duration-300">
-            <path d="M19 12H5M12 19l-7-7 7-7" />
-          </svg>
-        </div>
-        <span className="font-inter text-[10px] uppercase tracking-[0.3em] text-luxury-silver/40 group-hover:text-primary/70 transition-colors duration-300 hidden md:block">
-          Back
-        </span>
-      </Link>
+     
 
       {/* ═══════════════════════════════════════════
           HERO / HEADER
           ═══════════════════════════════════════════ */}
-      <section id="hero" data-section="hero" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
+          
+        <ParallaxSection>
+      <section  className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
         {/* Background grid */}
         {/* Background image */}
       <div className="absolute inset-0 z-0">
         {heroImages.map((img, index) => (
           <img
             key={index}
-            src='https://t3.ftcdn.net/jpg/04/46/54/48/360_F_446544889_jUP4HMhMTXFXdGMAiyYW20RIZZMMp2Ho.jpg'
+            src={goalBg}   
             alt={`Novella Induction Cooktop ${index + 1}`}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-              index === currentSlide ? "opacity-90" : "opacity-0"
+            className={`absolute inset-0 w-full h-full object-cover   ${
+              index === currentSlide ? "opacity-100" : "opacity-0"
             }`}
           />
         ))}
         <div className="absolute inset-0 bg-gradient-to-r from-black/60  to-black/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#141414]  to-[#141414]/60" />
-        <div className="absolute top-0 right-10 w-96 h-96 rounded-full bg-red-600/60 blur-[320px] animate-pulse" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#141414]/40  to-[#141414]/40" />
+        {/* <div className="absolute top-0 right-10 w-96 h-96 rounded-full bg-red-600/60 blur-[320px] " /> */}
       </div>
+     
         <div
           className="absolute inset-0 opacity-[0.04] pointer-events-none"
           style={{
@@ -576,6 +587,8 @@ export default function GoalPage() {
             </span>
           </motion.div>
 
+<ParallaxSection2>
+    
           <motion.h1
             className="text-white font-playfair text-5xl md:text-7xl lg:text-[6rem] text-center tracking-wide mb-6 leading-[1.05]"
             initial={{ opacity: 0, y: 50 }}
@@ -596,7 +609,7 @@ export default function GoalPage() {
             <div className="w-2 h-2 rotate-45 bg-primary/50" />
             <div className="w-20 h-px bg-gradient-to-l from-transparent to-primary/40" />
           </motion.div>
-
+</ParallaxSection2>
           <motion.p
             className="font-cormorant text-neutral-500 text-lg md:text-xl text-luxury-silver/60 text-center max-w-md italic"
             initial={{ opacity: 0 }}
@@ -624,6 +637,7 @@ export default function GoalPage() {
           </motion.div>
         </motion.div>
       </section>
+       </ParallaxSection>
 
       {/* ═══════════════════════════════════════════
           SECTION 01 — PRECISION & POWER
@@ -701,12 +715,16 @@ export default function GoalPage() {
               </Reveal>
             </div>
 
-            {/* Right — Illustration */}
-            <div className="relative">
-              <ParallaxSection className="sticky top-32">
-                <div className="relative border border-primary/20 p-6 bg-[#1A1A1A]/50">
+           {/* Right — Illustration */}
+            <div className="relative   ">
+
+        
+              <ParallaxSection className="sticky  lg:h-[37rem]  h-[31rem] p-2 ">
+                
+                <div className="relative   border border-primary/20 p-6 bg-[#1A1A1A]/50">
+                {/* <div className="absolute inset-0 bg-grid  opacity-50 z-10 " /> */}
                   {/* Frame */}
-                  <div className="absolute -inset-4 border border-primary/40  shadow-[0_10px_10px_10px_rgba(198,30,30,0.2)]" />
+                  <div className="absolute -inset-4 border border-primary/30  shadow-[0_6px_30px_10px_rgba(198,30,30,0.2)]" />
                   <div className="absolute -top-2 -left-2 w-6 h-6 border-t border-l border-primary" />
                   <div className="absolute -top-2 -right-2 w-6 h-6 border-t border-r border-primary" />
                   <div className="absolute -bottom-2 -left-2 w-6 h-6 border-b border-l border-primary" />
@@ -717,9 +735,9 @@ export default function GoalPage() {
                   </div>
 
                   {/* Label */}
-                  <div className="absolute -bottom-8 right-0 flex items-center gap-3">
+                  <div className="absolute -bottom-10 right-0 flex items-center gap-3">
                     <div className="w-8 h-px bg-primary/90" />
-                    <span className="font-mono text-[9px] text-neutral-400 tracking-[0.3em] uppercase">Fig. 01</span>
+                    <span className="font-mono text-[12px] text-neutral-400 tracking-[0.3em] uppercase">Fig. 01</span>
                   </div>
                 </div>
               </ParallaxSection>
@@ -742,24 +760,33 @@ export default function GoalPage() {
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             {/* Left — Illustration (flipped layout) */}
             <div className="relative order-2 lg:order-1">
-              <ParallaxSection className="sticky top-32">
-                <div className="relative border border-primary/20 p-6 bg-[#1A1A1A]/50">
-                <div className="absolute -inset-4 border border-primary/40  shadow-[0_10px_10px_10px_rgba(198,30,30,0.2)]" />
+             {/* Right — Illustration */}
+            <div className="relative   ">
+
+        
+              <ParallaxSection className="sticky  lg:h-[37rem]  h-[31rem] p-2 ">
+                
+                <div className="relative   border border-primary/20 p-6 bg-[#1A1A1A]/50">
+                {/* <div className="absolute inset-0 bg-grid  opacity-50 z-10 " /> */}
+                  {/* Frame */}
+                  <div className="absolute -inset-4 border border-primary/20  shadow-[0_6px_30px_10px_rgba(198,30,30,0.2)]" />
                   <div className="absolute -top-2 -left-2 w-6 h-6 border-t border-l border-primary" />
                   <div className="absolute -top-2 -right-2 w-6 h-6 border-t border-r border-primary" />
                   <div className="absolute -bottom-2 -left-2 w-6 h-6 border-b border-l border-primary" />
                   <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b border-r border-primary" />
 
-                  <div className="relative bg-[#1A1A1A] p-8 md:p-12 aspect-square flex items-center justify-center animate-pulse-glow">
+                  <div className="relative bg-[#1A1A1A]/60 p-8 md:p-12 aspect-square flex items-center justify-center animate-pulse-glow">
                     <CulinaryIllustration />
                   </div>
 
-                  <div className="absolute -bottom-8 left-0 flex items-center gap-3">
-                    <span className="font-mono text-[9px] text-neutral-400 tracking-[0.3em] uppercase">Fig. 02</span>
-                    <div className="w-8 h-px bg-[#1A1A1A]" />
+                  {/* Label */}
+                  <div className="absolute -bottom-10 right-0 flex items-center gap-3">
+                    <div className="w-8 h-px bg-primary/90" />
+                    <span className="font-mono text-[12px] text-neutral-400 tracking-[0.3em] uppercase">Fig. 01</span>
                   </div>
                 </div>
               </ParallaxSection>
+            </div>
             </div>
 
             {/* Right — Text Content */}

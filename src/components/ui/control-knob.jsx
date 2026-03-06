@@ -396,31 +396,7 @@ export default function NovellaCooktopPage() {
     <div
     
      className="min-h-screen  text-neutral-100 overflow-x-hidden">
-      {/* ═══ NAVIGATION ═══ */}
-      <motion.nav
-        className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-5 flex items-center justify-between"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.5 }}
-      >
-        <div className="flex items-center gap-2">
-          <div className="w-6 h-6 border border-red-700/50 rotate-45 flex items-center justify-center">
-            <div className="w-2 h-2 bg-red-600/60 rotate-45" />
-          </div>
-          <span className="font-serif text-lg tracking-[0.15em] text-red-100/80 ml-2">NOVÈLLA</span>
-        </div>
-        <div className="hidden md:flex items-center gap-8">
-          {["Design", "Control", "Specifications", "Enquire"].map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="font-mono text-[10px] uppercase tracking-[0.3em] text-neutral-500 hover:text-red-400/80 transition-colors duration-300"
-            >
-              {item}
-            </a>
-          ))}
-        </div>
-      </motion.nav>
+     
 
 
       {/* ═══ INTERACTIVE CONTROL SECTION ═══ */}
@@ -437,13 +413,13 @@ export default function NovellaCooktopPage() {
            
             <Reveal delay={0.1}>
               <h2 className="font-playfair text-5xl lg:text-8xl tracking-wide leading-tight mb-6">
-                Intuitive <span className="text-red-500/70">Control</span>
+                SMART 
+ <span className="text-red-500/70">4-BURNER HUB</span>
               </h2>
             </Reveal>
             <Reveal delay={0.2}>
               <p className="font-cormorant italic text-lg text-neutral-500 font-light max-w-2xl text-start md:text-center mx-auto">
-                Each zone features an independently calibrated haptic dial — responsive, precise, and satisfying. Drag the
-                knobs below to experience the interface.
+               A masterpiece of design and engineering. Novella brings advanced magnetic induction technology — rare in every era. Designed for beauty, built for precision, crafted for modern life.
               </p>
             </Reveal>
           </div>

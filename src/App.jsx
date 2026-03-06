@@ -4,46 +4,16 @@ import Kondo from "./components/Kondo";
 import OnwardSection from "./components/OnwardSection";
 import GoalPage from "./pages/GoalPage";
 import GoalSection from "./components/GoalSection";
+import Navbar from "./components/Navbar";
+import Products from "./pages/Products";
+import B2B from "./pages/B2B";
+import About from "./pages/About";
+import OurStory from "./components/OurStory";
+import Contact from "./pages/Contact";
+import Footer from "./components/Footer";
 
 // import Wave from './components/Wave'
 
-function Navbar() {
-  return (
-    <div className="fixed top-0 left-0 right-0 z-50">
-      <div className="px-6 md:px-12 py-5 flex items-center justify-between bg-black/30 backdrop-blur-md border-b border-white/10">
-        <div className="flex items-center gap-2">
-          <div className="w-6 h-6 border border-red-700/50 rotate-45 flex items-center justify-center">
-            <div className="w-2 h-2 bg-red-600/60 rotate-45" />
-          </div>
-          <span className="font-serif text-lg tracking-[0.15em] text-white/80 ml-2">NOVÈLLA</span>
-        </div>
-
-        <div className="flex items-center gap-8">
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              `font-mono text-[10px] uppercase tracking-[0.3em] transition-colors duration-300 ${
-                isActive ? "text-red-400/90" : "text-white/50 hover:text-red-400/80"
-              }`
-            }
-          >
-            Home
-          </NavLink>
-          <NavLink
-            to="/goal"
-            className={({ isActive }) =>
-              `font-mono text-[10px] uppercase tracking-[0.3em] transition-colors duration-300 ${
-                isActive ? "text-red-400/90" : "text-white/50 hover:text-red-400/80"
-              }`
-            }
-          >
-            GOAL
-          </NavLink>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 function HomePage() {
   return (
@@ -52,6 +22,7 @@ function HomePage() {
       <Kondo />
       <OnwardSection />
       <GoalSection />
+      <OurStory />
       
       {/* <Wave /> */}
     </div>
@@ -64,11 +35,16 @@ function App() {
 
   return (
     <div>
-      {showNavbar ? <Navbar /> : null}
+       <Navbar /> 
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/goal" element={<GoalPage />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/b2b" element={<B2B />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
+      <Footer />
     </div>
   )
 }
