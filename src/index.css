@@ -313,3 +313,58 @@
   background: radial-gradient(ellipse at center, hsl(0 85% 45% / 0.08) 0%, transparent 70%);
   z-index: 1;
 }
+
+@keyframes novellaFrameLineX {
+  0% { opacity: 0; transform: scaleX(0); background-position: 0% 50%; }
+  100% { opacity: 1; transform: scaleX(1); background-position: 100% 50%; }
+}
+
+@keyframes novellaFrameLineY {
+  0% { opacity: 0; transform: scaleY(0); background-position: 50% 0%; }
+  100% { opacity: 1; transform: scaleY(1); background-position: 50% 100%; }
+}
+
+html:not([data-aos-ready="true"]) [data-aos],
+html[data-aos-enabled="false"] [data-aos] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.aos-frame-lines .aos-frame-line {
+  position: absolute;
+  opacity: 0;
+  filter: drop-shadow(0 0 10px rgba(198, 30, 30, 0.25));
+}
+
+.aos-frame-lines .aos-frame-line--top,
+.aos-frame-lines .aos-frame-line--bottom {
+  height: 1px;
+  left: 0;
+  right: 0;
+  background: linear-gradient(90deg, transparent, rgba(198, 30, 30, 0.9), transparent);
+  background-size: 200% 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.aos-frame-lines .aos-frame-line--top { top: 0; }
+.aos-frame-lines .aos-frame-line--bottom { bottom: 0; }
+
+.aos-frame-lines .aos-frame-line--left,
+.aos-frame-lines .aos-frame-line--right {
+  width: 1px;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, transparent, rgba(198, 30, 30, 0.9), transparent);
+  background-size: 100% 200%;
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+.aos-frame-lines .aos-frame-line--left { left: 0; }
+.aos-frame-lines .aos-frame-line--right { right: 0; }
+
+.aos-frame.aos-animate .aos-frame-line--top { animation: novellaFrameLineX 650ms ease-out forwards; }
+.aos-frame.aos-animate .aos-frame-line--right { animation: novellaFrameLineY 650ms ease-out 120ms forwards; }
+.aos-frame.aos-animate .aos-frame-line--bottom { animation: novellaFrameLineX 650ms ease-out 240ms forwards; }
+.aos-frame.aos-animate .aos-frame-line--left { animation: novellaFrameLineY 650ms ease-out 360ms forwards; }

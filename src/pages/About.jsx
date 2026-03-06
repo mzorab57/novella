@@ -7,6 +7,7 @@ import aboutPhilosophy from "../assets/about-philosophy.jpeg";
 import novellaLogo from "../../public/assets/images/logo.jpeg";
 import Parallax from "@/components/ui/Parallax";
 import ParallaxText from "@/components/ui/ParallaxText";
+import { Aos } from "@/components/ui/aos";
 
 const philosophyItems = [
   {
@@ -36,7 +37,6 @@ const About = () => {
   const { ref: philoCardsRef, isInView: philoCardsIn } = useInView();
   const { ref: diffRef, isInView: diffIn } = useInView();
   const { ref: ceoRef, isInView: ceoIn } = useInView();
-  const { ref: ctaRef, isInView: ctaIn } = useInView();
 
   return (
     <div className="bg-background min-h-screen">
@@ -46,9 +46,9 @@ const About = () => {
      <section className="relative pt-16 text-start min-h-[90vh] flex items-center  overflow-hidden">
         {/* Background image */}
         <div className="absolute inset-0">
-            <Parallax>
+           
           <img src={aboutHero} alt="" className="w-full h-screen object-cover" />
-          </Parallax>
+         
           <div className="absolute inset-0 bg-gradient-to-r from-background via-background/20 to-background/40" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
         </div>
@@ -57,7 +57,7 @@ const About = () => {
           ref={heroTextRef}
           className={`relative z-10 max-w-6xl  mx-auto px-4 sm:px-6 lg:px-8 py-20 transition-all duration-1000 ${heroTextIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
         >
-            <ParallaxText>
+            <Aos animation="fade-up" delay={300}>
           <div className="max-w-5xl ">
            
              <h1 className="font-montserrat  text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-foreground mb-6 leading-[0.95]">
@@ -71,7 +71,7 @@ const About = () => {
             Every Novella product tells a story of passion, beauty, and innovation.
           </p>
           </div>
-          </ParallaxText>
+          </Aos>
         </div>
       </section>
 
@@ -239,8 +239,8 @@ const About = () => {
       </section>
 
 {/* ===== CEO MESSAGE ===== */}
-      <section className="py-32 bg-card relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-10" />
+      <section className="py-32  relative overflow-hidden">
+       
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px]" />
 
         <div

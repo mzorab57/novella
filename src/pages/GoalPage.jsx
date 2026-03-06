@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
-import { motion, useScroll, useTransform, useSpring, useInView } from "framer-motion";
+import { motion, useScroll, useSpring, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
+import { Aos } from "../components/ui/aos";
 import goalBg from '../assets/goal-hero.jpeg'
 
 
@@ -27,7 +28,7 @@ function Reveal({ children, delay = 0, className = "" }) {
   return (
     <motion.div
       ref={ref}
-      
+      className={className}
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.9, delay, ease: [0.22, 1, 0.36, 1] }}
@@ -46,37 +47,19 @@ function Reveal({ children, delay = 0, className = "" }) {
    PARALLAX IMAGE (SVG ILLUSTRATION)
    ═══════════════════════════════════════════════════ */
 function ParallaxSection({ children, className = "" }) {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], [160, -130]);
-
   return (
-    <div ref={ref} className={`relative overflow-hidden ${className}`}>
-      <motion.div style={{ y }}>
-        {children}
-      </motion.div>
-    </div>
+    <Aos animation="fade-up" className={`relative overflow-hidden ${className}`}>
+      {children}
+    </Aos>
   );
 }
 
 
 function ParallaxSection2({ children, className = "" }) {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["end start", "start end"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
-
   return (
-    <div ref={ref} className={`relative overflow-hidden ${className}`}>
-      <motion.div style={{ y }}>
-        {children}
-      </motion.div>
-    </div>
+    <Aos animation="fade-up" className={`relative overflow-hidden ${className}`}>
+      {children}
+    </Aos>
   );
 }
 
@@ -511,11 +494,6 @@ export default function GoalPage() {
 
   
     useEffect(() => {
-      const t = setTimeout(() => setLoaded(true), 100);
-      return () => clearTimeout(t);
-    }, []);
-  
-    useEffect(() => {
       const slideInterval = setInterval(() => {
         setCurrentSlide((prev) => (prev + 1) % heroImages.length);
       }, 5000);
@@ -534,7 +512,7 @@ export default function GoalPage() {
           HERO / HEADER
           ═══════════════════════════════════════════ */}
           
-        <ParallaxSection>
+        
       <section  className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
         {/* Background grid */}
         {/* Background image */}
@@ -637,7 +615,7 @@ export default function GoalPage() {
           </motion.div>
         </motion.div>
       </section>
-       </ParallaxSection>
+      
 
       {/* ═══════════════════════════════════════════
           SECTION 01 — PRECISION & POWER

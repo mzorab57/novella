@@ -1,35 +1,22 @@
-"use client";
-import React, { useState, useEffect, useCallback, useRef } from "react";
-import {
-  motion,
-  useMotionValue,
-  useTransform,
-  useSpring,
-  useMotionValueEvent,
-  useInView,
-  useAnimation,
-} from "framer-motion";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { Aos } from "./aos";
 
 const MIN_DEG = -135;
 const MAX_DEG = 135;
 const TOTAL_TICKS = 40;
 const DEGREES_PER_TICK = (MAX_DEG - MIN_DEG) / TOTAL_TICKS;
 
-const SPRING_CONFIG = {
-  stiffness: 400,
-  damping: 35,
-  mass: 0.8,
-};
+function clamp(value, min, max) {
+  return Math.max(min, Math.min(max, value));
+}
 
-const FLOATING_PARTICLES = Array.from({ length: 30 }, (_, i) => ({
-  id: i,
-  left: Math.random() * 100,
-  top: Math.random() * 100,
-  y: -200 - Math.random() * 300,
-  x: (Math.random() - 0.5) * 100,
-  duration: 6 + Math.random() * 8,
-  delay: Math.random() * 10,
-}));
+function degToPercent(deg) {
+  return Math.round(((deg - MIN_DEG) / (MAX_DEG - MIN_DEG)) * 100);
+}
+
+function percentToDeg(percent) {
+  return MIN_DEG + (percent / 100) * (MAX_DEG - MIN_DEG);
+}
 
 // ═══════════════════════════════════════════════════════
 // REACTOR KNOB COMPONENT
@@ -39,24 +26,17 @@ function ReactorKnob({
   label = "LEVEL",
   outputLabel = "OUTPUT",
   defaultValue = 37,
-  accentColor = "orange",
+  accentColor = "red",
 }) {
-  const defaultDeg = MIN_DEG + (defaultValue / 100) * (MAX_DEG - MIN_DEG);
-
   const [isDragging, setIsDragging] = useState(false);
-  const rawRotation = useMotionValue(defaultDeg);
-  const snappedRotation = useMotionValue(defaultDeg);
-  const smoothRotation = useSpring(snappedRotation, SPRING_CONFIG);
-
-  const displayValue = useTransform(smoothRotation, [MIN_DEG, MAX_DEG], [0, 100]);
-  const lightOpacity = useTransform(rawRotation, [MIN_DEG, MAX_DEG], [0.03, 0.35]);
-
+  const [rotationDeg, setRotationDeg] = useState(() => percentToDeg(defaultValue));
   const knobRef = useRef(null);
 
-  const handlePointerDown = useCallback(() => {
+  const handlePointerDown = useCallback((e) => {
     setIsDragging(true);
     document.body.style.cursor = "grabbing";
     document.body.style.userSelect = "none";
+    e.currentTarget.setPointerCapture?.(e.pointerId);
   }, []);
 
   useEffect(() => {
@@ -74,9 +54,8 @@ function ReactorKnob({
       if (degs > 180) degs -= 360;
       if (degs < MIN_DEG && degs > -180) degs = MIN_DEG;
       if (degs > MAX_DEG) degs = MAX_DEG;
-      rawRotation.set(degs);
       const snap = Math.round(degs / DEGREES_PER_TICK) * DEGREES_PER_TICK;
-      snappedRotation.set(snap);
+      setRotationDeg(snap);
     };
 
     const handlePointerUp = () => {
@@ -91,7 +70,7 @@ function ReactorKnob({
       window.removeEventListener("pointermove", handlePointerMove);
       window.removeEventListener("pointerup", handlePointerUp);
     };
-  }, [isDragging, rawRotation, snappedRotation, DEGREES_PER_TICK, MAX_DEG, MIN_DEG]);
+  }, [isDragging]);
 
   const ticks = Array.from({ length: TOTAL_TICKS + 1 });
 
@@ -106,11 +85,12 @@ function ReactorKnob({
     gold: { hex: "#c9a96e", rgb: "201, 169, 110", tw: "text-yellow-600" },
   };
   const c = colorMap[accentColor] || colorMap.red;
+  const percent = clamp(degToPercent(rotationDeg), 0, 100);
+  const lightOpacity = 0.03 + (percent / 100) * 0.32;
 
   return (
     <div className="relative select-none " style={{ width: containerSize, height: containerSize + 64 }}>
-  {/*  lighting chwardawr */}
-      <motion.div
+      <div
         className="absolute rounded-full"
         style={{
           inset: containerSize * 0.1,
@@ -121,7 +101,6 @@ function ReactorKnob({
       />
       
 
-{/* dota kani chwar dawr */}
       <div className="absolute inset-0 pointer-events-none">
         {ticks.map((_, i) => {
           const angle = (i / TOTAL_TICKS) * (MAX_DEG - MIN_DEG) + MIN_DEG;
@@ -131,13 +110,12 @@ function ReactorKnob({
               className="absolute top-0 left-1/2 h-full"
               style={{ width: 3, transform: `translateX(-50%) rotate(${angle}deg)` }}
             >
-              <TickMark currentRotation={smoothRotation} angle={angle} color={"#C61E1E"} rgb={c.rgb} />
+              <TickMark currentRotation={rotationDeg} angle={angle} color={"#C61E1E"} rgb={c.rgb} />
             </div>
           );
         })}
       </div>
 
-{/* geji zia krdn w kam krdn */}
       <div
       
         className="absolute"
@@ -149,13 +127,14 @@ function ReactorKnob({
           transform: "translate(-50%, -50%)",
         }}
       >
-        <motion.div
+        <div
           ref={knobRef}
           className={`relative w-full h-full rounded-full touch-none z-20 ${isDragging ? "cursor-grabbing" : "cursor-grab"}`}
-          style={{ rotate: smoothRotation }}
+          style={{
+            transform: `rotate(${rotationDeg}deg)`,
+            transition: isDragging ? "none" : "transform 160ms ease-out",
+          }}
           onPointerDown={handlePointerDown}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
         >
           <div className="w-full h-full rounded-full bg-neutral-900 shadow-[0_10px_30px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.1)] border border-neutral-800 flex items-center justify-center relative overflow-hidden">
             <div className="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.1),transparent_50%),conic-gradient(from_0deg,transparent_0deg,#000_360deg)]" />
@@ -163,13 +142,13 @@ function ReactorKnob({
               className="relative rounded-full bg-neutral-950 shadow-[inset_0_2px_5px_rgba(0,0,0,1)] border border-neutral-800/50 flex items-center justify-center"
               style={{ width: capSize, height: capSize }}
             >
-              <motion.div
+              <div
                 className="absolute top-2 rounded-full"
                 style={{
                   width: 5,
                   height: 16,
                   backgroundColor: "#C61E1E",
-                  boxShadow: useTransform(rawRotation, (r) => `0 0 ${Math.max(5, (r + 135) / 10)}px #C61E1E`),
+                  boxShadow: `0 0 ${Math.max(5, (rotationDeg + 135) / 10)}px #C61E1E`,
                 }}
               />
               <div className="flex flex-col items-center mt-4 opacity-50">
@@ -177,16 +156,15 @@ function ReactorKnob({
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
 
-{/* persentage ka */}
       <div
         className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none"
         style={{ bottom: -8 }}
       >
         <span className="text-[9px] text-neutral-600 font-mono tracking-[0.2em] mb-1">{outputLabel}</span>
-        <DisplayValue value={displayValue} defaultVal={defaultValue} color={"#C61E1E"} />
+        <DisplayValue value={percent} color={c} />
       </div>
     </div>
   );
@@ -198,14 +176,13 @@ function TickMark({
   color,
   rgb,
 }) {
-  const opacity = useTransform(currentRotation, (r) => (r >= angle ? 1 : 0.2));
-  const bgColor = useTransform(currentRotation, (r) => (r >= angle ? color : "#404040"));
-  const boxShadow = useTransform(currentRotation, (r) =>
-    r >= angle ? `0 0 8px rgba(${rgb}, 0.6)` : "none"
-  );
+  const active = currentRotation >= angle;
+  const opacity = active ? 1 : 0.2;
+  const bgColor = active ? color : "#404040";
+  const boxShadow = active ? `0 0 8px rgba(${rgb}, 0.6)` : "none";
 
   return (
-    <motion.div
+    <div
       style={{ backgroundColor: bgColor, opacity, boxShadow }}
       className="w-1 h-2 rounded-full transition-colors duration-75"
     />
@@ -214,60 +191,21 @@ function TickMark({
 
 function DisplayValue({
   value,
-  defaultVal,
   color,
 }) {
-  const [display, setDisplay] = useState(defaultVal);
-  useMotionValueEvent(value, "change", (latest) => setDisplay(Math.round(latest)));
-
   return (
     <div className="relative">
       <span
         className="absolute inset-0 blur-sm font-mono text-2xl font-black tabular-nums tracking-widest"
         style={{ color: `${color.hex}50` }}
       >
-        {display.toString().padStart(3, "0")}
+        {value.toString().padStart(3, "0")}
       </span>
       <span className="relative font-mono text-2xl font-black tabular-nums tracking-widest" style={{ color: color.hex }}>
-        {display.toString().padStart(3, "0")}
+        {value.toString().padStart(3, "0")}
         <span className="text-xs text-neutral-600 ml-1">%</span>
       </span>
     </div>
-  );
-}
-
-// ═══════════════════════════════════════════════════════
-// REVEAL ANIMATION COMPONENT
-// ═══════════════════════════════════════════════════════
-function Reveal({ children, delay = 0, className = "" }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
-  const controls = useAnimation();
-
-  useEffect(() => {
-    if (isInView) {
-      controls.start("visible");
-    }
-  }, [isInView, controls]);
-
-  return (
-    <motion.div
-      ref={ref}
-      className={className}
-      initial="hidden"
-      animate={controls}
-      variants={{
-        hidden: { opacity: 0, y: 30, filter: "blur(4px)" },
-        visible: {
-          opacity: 1,
-          y: 0,
-          filter: "blur(0px)",
-          transition: { duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] },
-        },
-      }}
-    >
-      {children}
-    </motion.div>
   );
 }
 
@@ -280,45 +218,32 @@ function CooktopIllustration({ className }) {
       <rect x="30" y="40" width="440" height="320" rx="16" fill="#1a1a1a" stroke="#333" strokeWidth="1" />
       <rect x="40" y="50" width="420" height="300" rx="12" fill="#111" />
       
-      {/* Burner zones - Animated */}
-      <motion.g
-        animate={{ opacity: [0.4, 0.7, 0.4] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-      >
+      <g className="animate-pulse" style={{ animationDuration: "3s" }}>
         <circle cx="160" cy="150" r="55" stroke="#c9a96e" strokeWidth="0.5" />
         <circle cx="160" cy="150" r="40" stroke="#c9a96e" strokeWidth="0.5" opacity="0.8" />
         <circle cx="160" cy="150" r="25" stroke="#c9a96e" strokeWidth="0.5" opacity="0.6" />
         <circle cx="160" cy="150" r="3" fill="#c9a96e" />
-      </motion.g>
+      </g>
 
-      <motion.g
-        animate={{ opacity: [0.3, 0.6, 0.3] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-      >
+      <g className="animate-pulse" style={{ animationDuration: "4s", animationDelay: "0.5s" }}>
         <circle cx="340" cy="150" r="65" stroke="#c9a96e" strokeWidth="0.5" />
         <circle cx="340" cy="150" r="48" stroke="#c9a96e" strokeWidth="0.5" opacity="0.8" />
         <circle cx="340" cy="150" r="30" stroke="#c9a96e" strokeWidth="0.5" opacity="0.6" />
         <circle cx="340" cy="150" r="3" fill="#c9a96e" />
-      </motion.g>
+      </g>
 
-      <motion.g
-        animate={{ opacity: [0.3, 0.5, 0.3] }}
-        transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-      >
+      <g className="animate-pulse" style={{ animationDuration: "3.5s", animationDelay: "1s" }}>
         <circle cx="160" cy="280" r="45" stroke="#c9a96e" strokeWidth="0.5" />
         <circle cx="160" cy="280" r="30" stroke="#c9a96e" strokeWidth="0.5" opacity="0.8" />
         <circle cx="160" cy="280" r="3" fill="#c9a96e" />
-      </motion.g>
+      </g>
 
-      <motion.g
-        animate={{ opacity: [0.4, 0.8, 0.4] }}
-        transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
-      >
+      <g className="animate-pulse" style={{ animationDuration: "2.5s", animationDelay: "0.2s" }}>
         <circle cx="340" cy="280" r="50" stroke="#c9a96e" strokeWidth="0.5" />
         <circle cx="340" cy="280" r="35" stroke="#c9a96e" strokeWidth="0.5" opacity="0.8" />
         <circle cx="340" cy="280" r="20" stroke="#c9a96e" strokeWidth="0.5" opacity="0.6" />
         <circle cx="340" cy="280" r="3" fill="#c9a96e" />
-      </motion.g>
+      </g>
 
       {/* Control strip */}
       <rect x="180" y="365" width="140" height="2" rx="1" fill="#c9a96e" opacity="0.15" />
@@ -330,49 +255,12 @@ function CooktopIllustration({ className }) {
 }
 
 // ═══════════════════════════════════════════════════════
-// FLOATING PARTICLES
-// ═══════════════════════════════════════════════════════
-function FloatingParticles() {
-  const particles = FLOATING_PARTICLES;
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {particles.map((p) => (
-        <motion.div
-          key={p.id}
-          className="absolute w-px h-px bg-red-400/30 rounded-full"
-          style={{
-            left: `${p.left}%`,
-            top: `${p.top}%`,
-          }}
-          animate={{
-            y: [0, p.y],
-            x: [0, p.x],
-            opacity: [0, 0.6, 0],
-            scale: [0, 1.5, 0],
-          }}
-          transition={{
-            duration: p.duration,
-            repeat: Infinity,
-            delay: p.delay,
-            ease: "easeOut",
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
-// ═══════════════════════════════════════════════════════
 // SPEC CARD
 // ═══════════════════════════════════════════════════════
 function SpecCard({ icon, title, value, unit, delay }) {
   return (
-    <Reveal delay={delay}>
-      <motion.div
-        className="relative group p-6 border border-neutral-800/50 bg-neutral-950/50 backdrop-blur-sm"
-        whileHover={{ borderColor: "rgba(201,169,110,0.3)", y: -4 }}
-        transition={{ duration: 0.3 }}
-      >
+    <Aos animation="fade-up" delay={Math.round(delay * 1000)}>
+      <div className="relative group p-6 border border-neutral-800/50 bg-neutral-950/50 backdrop-blur-sm transition-transform duration-300 hover:-translate-y-1">
         <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-red-700/80" />
         <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-red-700/80" />
         <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-red-700/80" />
@@ -383,8 +271,8 @@ function SpecCard({ icon, title, value, unit, delay }) {
           <span className="font-serif text-2xl text-red-200/90 font-light">{value}</span>
           <span className="text-[10px] text-neutral-500 font-mono">{unit}</span>
         </div>
-      </motion.div>
-    </Reveal>
+      </div>
+    </Aos>
   );
 }
 
@@ -392,6 +280,8 @@ function SpecCard({ icon, title, value, unit, delay }) {
 // MAIN PAGE COMPONENT
 // ═══════════════════════════════════════════════════════
 export default function NovellaCooktopPage() {
+
+
   return (
     <div
     
@@ -411,21 +301,20 @@ export default function NovellaCooktopPage() {
         <div className="max-w-7xl   mx-auto px-6 md:px-12">
           <div className="text-start md:text-center  mb-20 ">
            
-            <Reveal delay={0.1}>
+            <Aos animation="fade-up" delay={100}>
               <h2 className="font-playfair text-5xl lg:text-8xl tracking-wide leading-tight mb-6">
                 SMART 
  <span className="text-red-500/70">4-BURNER HUB</span>
               </h2>
-            </Reveal>
-            <Reveal delay={0.2}>
+            </Aos>
+            <Aos animation="fade-up" delay={200}>
               <p className="font-cormorant italic text-lg text-neutral-500 font-light max-w-2xl text-start md:text-center mx-auto">
                A masterpiece of design and engineering. Novella brings advanced magnetic induction technology — rare in every era. Designed for beauty, built for precision, crafted for modern life.
               </p>
-            </Reveal>
+            </Aos>
           </div>
 
-          {/* Interactive Knobs Grid tabaxaka */}
-          <Reveal delay={0.3}>
+          <Aos animation="fade-up" delay={300}>
             
             <div className="relative max-w-4xl border border-neutral-800/60 bg-neutral-900/40 px-4 mx-auto">
               
@@ -470,7 +359,9 @@ export default function NovellaCooktopPage() {
               </div>
               
             </div>
-          </Reveal>
+          </Aos>
+
+          
           
         </div>
       </section>

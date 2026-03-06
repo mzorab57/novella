@@ -1,4 +1,3 @@
-import React from 'react'
 import about from '../assets/about-section.jpeg'
 import logo from '../../public/assets/images/logo.jpeg'
 import { useInView } from '../hooks/useInView'
@@ -7,9 +6,7 @@ import { useInView } from '../hooks/useInView'
 const OurStory = () => {
 //   const storyRef = React.useRef(null)
   const { ref: imgRef, isInView: imgInView } = useInView();
-  const { ref: featRef, isInView: featInView } = useInView();
    const { ref: storyRef, isInView: storyIn } = useInView();
-    const { ref: storyImgRef, isInView: storyImgIn } = useInView();
   return (
     
          <section className="py-32 relative overflow-hidden">

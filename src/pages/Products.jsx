@@ -1,5 +1,4 @@
-import { useState, useEffect, useRef } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Zap, Shield, Timer, Lock, Thermometer, Cpu, Hand, Sparkles, Gauge, Leaf, ChevronDown, ChevronUp, Flame, PlugZap } from "lucide-react";
 import { useInView } from "../hooks/useInView";
@@ -7,25 +6,16 @@ import productHero from "../assets/product-hero.jpeg";
 import productTouch from "../assets/product-touch.jpeg";
 import productLifestyle from "../assets/product-lifestyle.jpeg";
 // import nv410 from "/assets/nv410-product.jpg";
-import novellaLogo from "/assets/images/see-through.jpg";
 import Parallax from "../components/ui/Parallax";
-import ParallaxText from "@/components/ui/ParallaxText";
+import ParallaxText from "../components/ui/ParallaxText";
+import { Aos } from "../components/ui/aos";
 
 /* ═══════════════════════════════════════════════════
    COMPACT CARD (چاککراو)
    ═══════════════════════════════════════════════════ */
 function CompactCard({ num, title, desc, icon: Icon, delay = 0 }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
-
   return (
-    <motion.div
-      ref={ref}
-      className="group relative"
-      initial={{ opacity: 0, y: 40 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay: delay, ease: [0.22, 1, 0.36, 1] }}
-    >
+    <Aos animation="fade-up" delay={Math.round(delay * 1000)} className="group relative">
       <div className="relative p-8 border border-primary/15 hover:border-primary/30 bg-luxury-dark/80 backdrop-blur-sm transition-all duration-700 h-full">
         {/* Hover gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
@@ -55,7 +45,7 @@ function CompactCard({ num, title, desc, icon: Icon, delay = 0 }) {
         <div className="absolute top-0 left-0 w-5 h-5 border-t border-l border-primary/0 group-hover:border-primary/30 transition-all duration-700" />
         <div className="absolute bottom-0 right-0 w-5 h-5 border-b border-r border-primary/0 group-hover:border-primary/30 transition-all duration-700" />
       </div>
-    </motion.div>
+    </Aos>
   );
 }
 
@@ -162,7 +152,6 @@ const Products = () => {
   const { ref: featRef, isInView: featIn } = useInView();
   const { ref: compareRef, isInView: compareIn } = useInView();
   const { ref: faqRef, isInView: faqIn } = useInView();
-  const { ref: ctaRef, isInView: ctaIn } = useInView();
 
   return (
     <div className="bg-background ">
@@ -173,9 +162,9 @@ const Products = () => {
       <section className="relative pt-16 text-start min-h-[90vh] flex items-center  overflow-hidden">
         {/* Background image */}
         <div className="absolute inset-0">
-            <Parallax>
+           
           <img src={productHero} alt="" className="w-full h-screen object-cover" />
-          </Parallax>
+       
           <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/40" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
         </div>
@@ -184,7 +173,7 @@ const Products = () => {
           ref={heroRef}
           className={`relative z-10 max-w-6xl  mx-auto px-4 sm:px-6 lg:px-8 py-20 transition-all duration-1000 ${heroIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
         >
-            <ParallaxText>
+            <Aos animation="fade-up" delay={300}>
           <div className="max-w-5xl ">
            
             <h1 className="font-playfair text-5xl sm:text-6xl lg:text-8xl text-white  text-foreground leading-[1.1] mb-6">
@@ -199,7 +188,7 @@ const Products = () => {
               A masterpiece of design and engineering. Novella brings advanced magnetic induction technology — rare in every era. Designed for beauty, built for precision, crafted for modern life.
             </p>
           </div>
-          </ParallaxText>
+          </Aos>
         </div>
       </section>
 

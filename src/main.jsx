@@ -3,11 +3,14 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from "react-router-dom";
 import './index.css'
 import App from './App.jsx'
+import { AosProvider } from "./components/ui/aos";
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <App />
+      <AosProvider>
+        <App />
+      </AosProvider>
     </BrowserRouter>
   </StrictMode>,
 )

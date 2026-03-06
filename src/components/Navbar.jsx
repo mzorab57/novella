@@ -76,7 +76,7 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <NavLink
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}
               key={link.to}
               to={link.to}
               className={({ isActive }) =>
@@ -142,7 +142,7 @@ const Navbar = () => {
             <NavLink
               key={link.to}
               to={link.to}
-              onClick={() => setIsOpen(false)}
+              onClick={() => {setIsOpen(false) ; window.scrollTo({ top: 0, behavior: "instant" })}}
               className={({ isActive }) =>
                 `font-mono text-[11px] uppercase tracking-[0.3em] py-3 px-4 rounded-lg transition-all duration-300 border border-transparent ${
                   isActive

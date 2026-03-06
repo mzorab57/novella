@@ -32,6 +32,7 @@ import {
 } from "lucide-react";
 import Parallax from "@/components/ui/Parallax";
 import ParallaxText from "@/components/ui/ParallaxText";
+import { Aos } from "@/components/ui/aos";
 
 /* ─── Hero ─── */
 const HeroSection = () => {
@@ -41,9 +42,9 @@ const HeroSection = () => {
       <section className="relative pt-16 text-start min-h-[90vh] flex items-center  overflow-hidden">
         {/* Background image */}
         <div className="absolute inset-0">
-            <Parallax>
+           
           <img src={b2bHero} alt="" className="w-full h-screen object-cover" />
-          </Parallax>
+          
           <div className="absolute inset-0 bg-gradient-to-r from-background via-background/20 to-background/40" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
         </div>
@@ -52,7 +53,7 @@ const HeroSection = () => {
           ref={ref}
           className={`relative z-10 max-w-6xl  mx-auto px-4 sm:px-6 lg:px-8 py-20 transition-all duration-1000 ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
         >
-            <ParallaxText>
+            <Aos animation="fade-up" delay={300}>
           <div className="max-w-5xl ">
            
              <h1 className="font-montserrat  text-5xl sm:text-6xl lg:text-7xl xl:text-8xl text-foreground leading-[0.95] mb-6">
@@ -67,7 +68,7 @@ const HeroSection = () => {
           Tailored solutions for businesses, designers, and developers.
         </p>
           </div>
-          </ParallaxText>
+          </Aos>
         </div>
       </section>
   );
@@ -271,7 +272,7 @@ const ProcessSection = () => {
 
           {/* Steps */}
           <div ref={stepsRef} className="space-y-6">
-            {steps.map(({ icon: Icon, num, title, desc }, i) => (
+            {steps.map(({ num, title, desc }, i) => (
               <div
                 key={num}
                 className={`group flex gap-6 p-4  border border-border bg-card/50 hover:bg-card hover:border-primary/30 transition-all duration-500 ${

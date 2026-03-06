@@ -1,21 +1,12 @@
-import { useScroll,motion, useTransform, } from 'framer-motion';
-import React, { useRef } from 'react'
+import React from "react";
+import { Aos } from "./aos";
 
-const ParallaxText = ({ children, className = "" }) => {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["end start", "start end"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
-
+const ParallaxText = ({ children, className = "", animation = "fade-up", delay = 0 }) => {
   return (
-    <div ref={ref} className={`relative overflow-hidden ${className}`}>
-      <motion.div style={{ y }}>
-        {children}
-      </motion.div>
-    </div>
+    <Aos animation={animation} delay={delay} className={className}>
+      <div className="relative overflow-hidden">{children}</div>
+    </Aos>
   );
-}
+};
 
-export default ParallaxText
+export default ParallaxText;
