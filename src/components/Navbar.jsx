@@ -76,6 +76,7 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <NavLink
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               key={link.to}
               to={link.to}
               className={({ isActive }) =>

@@ -30,31 +30,32 @@ import {
   MessageSquare,
   Hash,
 } from "lucide-react";
+import Parallax from "@/components/ui/Parallax";
+import ParallaxText from "@/components/ui/ParallaxText";
 
 /* ─── Hero ─── */
 const HeroSection = () => {
   const { ref, isInView } = useInView(0.1);
   return (
-    <section className="relative h-[85vh] min-h-[600px] flex items-center overflow-hidden">
-      {/* bg image */}
-      <div className="absolute inset-0">
-        <img src={b2bHero} alt="Commercial kitchen" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/30" />
-      </div>
+     
+      <section className="relative pt-16 text-start min-h-[90vh] flex items-center  overflow-hidden">
+        {/* Background image */}
+        <div className="absolute inset-0">
+            <Parallax>
+          <img src={b2bHero} alt="" className="w-full h-screen object-cover" />
+          </Parallax>
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/20 to-background/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+        </div>
 
-      {/* glow */}
-      <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px]" />
-
-      <div
-        ref={ref}
-        className={`relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${
-          isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-        }`}
-      >
-       
-
-        <h1 className="font-montserrat  text-5xl sm:text-6xl lg:text-7xl xl:text-8xl text-foreground leading-[0.95] mb-6">
+        <div
+          ref={ref}
+          className={`relative z-10 max-w-6xl  mx-auto px-4 sm:px-6 lg:px-8 py-20 transition-all duration-1000 ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+        >
+            <ParallaxText>
+          <div className="max-w-5xl ">
+           
+             <h1 className="font-montserrat  text-5xl sm:text-6xl lg:text-7xl xl:text-8xl text-foreground leading-[0.95] mb-6">
           B2B
           <br />
           <span className="text-gradient-red">PARTNERSHIPS</span>
@@ -65,10 +66,10 @@ const HeroSection = () => {
           Elevate your commercial projects with Novella's premium induction technology.
           Tailored solutions for businesses, designers, and developers.
         </p>
-
-        
-      </div>
-    </section>
+          </div>
+          </ParallaxText>
+        </div>
+      </section>
   );
 };
 

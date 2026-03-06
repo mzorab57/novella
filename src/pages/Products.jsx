@@ -8,6 +8,8 @@ import productTouch from "../assets/product-touch.jpeg";
 import productLifestyle from "../assets/product-lifestyle.jpeg";
 // import nv410 from "/assets/nv410-product.jpg";
 import novellaLogo from "/assets/images/see-through.jpg";
+import Parallax from "../components/ui/Parallax";
+import ParallaxText from "@/components/ui/ParallaxText";
 
 /* ═══════════════════════════════════════════════════
    COMPACT CARD (چاککراو)
@@ -163,14 +165,17 @@ const Products = () => {
   const { ref: ctaRef, isInView: ctaIn } = useInView();
 
   return (
-    <div className="bg-background min-h-screen">
+    <div className="bg-background ">
     
+
 
       {/* ─── 1. HERO ─── */}
       <section className="relative pt-16 text-start min-h-[90vh] flex items-center  overflow-hidden">
         {/* Background image */}
         <div className="absolute inset-0">
-          <img src={productHero} alt="" className="w-full h-full object-cover" />
+            <Parallax>
+          <img src={productHero} alt="" className="w-full h-screen object-cover" />
+          </Parallax>
           <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/40" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
         </div>
@@ -179,6 +184,7 @@ const Products = () => {
           ref={heroRef}
           className={`relative z-10 max-w-6xl  mx-auto px-4 sm:px-6 lg:px-8 py-20 transition-all duration-1000 ${heroIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
         >
+            <ParallaxText>
           <div className="max-w-5xl ">
            
             <h1 className="font-playfair text-5xl sm:text-6xl lg:text-8xl text-white  text-foreground leading-[1.1] mb-6">
@@ -192,12 +198,12 @@ const Products = () => {
             <p className="text-secondary-foreground text-lg leading-relaxed mb-10 max-w-4xl">
               A masterpiece of design and engineering. Novella brings advanced magnetic induction technology — rare in every era. Designed for beauty, built for precision, crafted for modern life.
             </p>
-          
           </div>
+          </ParallaxText>
         </div>
       </section>
 
-      {/* ─── 2. HIGHLIGHTS BAR ─── */}
+     
      {/* ─── 2. HIGHLIGHTS BAR (چاککراو) ─── */}
       <section ref={highlightRef} className="relative z-20 -mt-16">
         <div className="max-w-5xl mx-auto px-4">
@@ -222,11 +228,11 @@ const Products = () => {
         <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -translate-y-1/2" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
           <div
             ref={howRef}
             className={`text-center mb-20 transition-all duration-700 ${howIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-          >
-            
+          > 
             <h2 className="font-playfair  text-4xl sm:text-5xl text-foreground mb-4">
               HOW <span className="text-primary">INDUCTION</span>  WORKS
             </h2>

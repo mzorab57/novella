@@ -5,6 +5,8 @@ import aboutHero from "../assets/goal.jpeg";
 import aboutCraftsmanship from "../assets/about-craftsmanship.jpeg";
 import aboutPhilosophy from "../assets/about-philosophy.jpeg";
 import novellaLogo from "../../public/assets/images/logo.jpeg";
+import Parallax from "@/components/ui/Parallax";
+import ParallaxText from "@/components/ui/ParallaxText";
 
 const philosophyItems = [
   {
@@ -41,32 +43,24 @@ const About = () => {
       
 
       {/* ===== HERO ===== */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+     <section className="relative pt-16 text-start min-h-[90vh] flex items-center  overflow-hidden">
         {/* Background image */}
         <div className="absolute inset-0">
-          <img
-            src={aboutHero}
-            alt="Italian Kitchen"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
-          <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-transparent to-background/40" />
+            <Parallax>
+          <img src={aboutHero} alt="" className="w-full h-screen object-cover" />
+          </Parallax>
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/20 to-background/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
         </div>
-
-        {/* Decorative elements */}
-        <div className="absolute top-1/4 left-10 w-px h-40 bg-gradient-to-b from-transparent via-primary/40 to-transparent animate-float" />
-        <div className="absolute bottom-1/3 right-10 w-px h-32 bg-gradient-to-b from-transparent via-primary/30 to-transparent animate-float delay-500" />
-        <div className="absolute top-20 right-1/4 w-20 h-20 rounded-full border border-primary/10 animate-float delay-300" />
 
         <div
           ref={heroTextRef}
-          className={`relative z-10 text-start max-w-5xl px-4 transition-all duration-1000 ${
-            heroTextIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-          }`}
+          className={`relative z-10 max-w-6xl  mx-auto px-4 sm:px-6 lg:px-8 py-20 transition-all duration-1000 ${heroTextIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
         >
-         
-
-          <h1 className="font-montserrat  text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-foreground mb-6 leading-[0.95]">
+            <ParallaxText>
+          <div className="max-w-5xl ">
+           
+             <h1 className="font-montserrat  text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-foreground mb-6 leading-[0.95]">
             CELEBRATING
             <br />
             <span className="text-gradient-red">ITALIAN </span>DESIGN
@@ -76,14 +70,11 @@ const About = () => {
             Where the art of Italian craftsmanship meets the precision of modern technology.
             Every Novella product tells a story of passion, beauty, and innovation.
           </p>
-
-          <div className="flex items-center justify-center gap-2 text-primary/60 animate-float">
-            <div className="w-px h-8 bg-primary/40" />
-            <span className="text-xs tracking-[0.3em] uppercase"> NOVÈLLA</span>
-            <div className="w-px h-8 bg-primary/40" />
           </div>
+          </ParallaxText>
         </div>
       </section>
+
 
       {/* ===== OUR STORY ===== */}
       <section className="py-32 relative overflow-hidden">

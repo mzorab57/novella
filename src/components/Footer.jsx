@@ -1,25 +1,25 @@
+import { Link } from "react-router-dom";
 import novellaLogo from "../../public/assets/images/logo.jpeg";
 
 const footerLinks = {
-  "Product": ["NV-410 Smart Hub", "Specifications", "Features", "Safety Guide"],
-  "Company": ["About Us", "B2B Partnerships", "Catalog", "Contact"],
+  "Product": [{link:"nv-410-smart-hub"}, {link:"specifications"}, {link:"features"}, {link:"safety-guide"}],
+  "Company": [{link:"about"}, {link:"b2b"}, {link:"products"}, {link:"contact"}],
 //   "Support": ["Installation Guide", "Warranty", "FAQ", "Technical Support"],
 };
 
 const Footer = () => {
   return (
     <footer className="bg-card relative border-t border-border pt-20 pb-8">
-         {/* ─── 7. CTA ─── */}
+         
      
-        <div className="absolute top-0 inset-0 bg-gradient-to-t from-primary/15 via-transparent to-transparent" />
-   
+        
      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-lg overflow-hidden border border-primary/20">
+              <div className="size-20 rounded-lg overflow-hidden border border-primary/20">
                 <img src={novellaLogo} alt="Novella" className="w-full h-full object-cover" />
               </div>
               <div>
@@ -31,14 +31,7 @@ const Footer = () => {
               Redefining the cooking experience through precision induction technology, 
               seamless design, and uncompromising safety.
             </p>
-            <a
-              href="https://novella-inc.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary text-sm hover:underline"
-            >
-              novella-inc.com →
-            </a>
+           
           </div>
 
           {/* Links */}
@@ -48,9 +41,13 @@ const Footer = () => {
               <ul className="space-y-3">
                 {links.map((link) => (
                   <li key={link}>
-                    <a href="#" className="text-muted-foreground text-sm hover:text-primary transition-colors nav-link-hover">
-                      {link}
-                    </a>
+                    <Link onClick={() => {
+                      if (category === "Company") {
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }
+                    }} to={`/${category === "Company" ? link.link : ''}`} className="text-muted-foreground uppercase text-sm hover:text-primary transition-colors nav-link-hover">  
+                      {link.link}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -60,13 +57,21 @@ const Footer = () => {
 
         {/* Bottom */}
         <div className="border-t border-border pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-muted-foreground text-xs tracking-wider">
-            © 2024 Novella. All rights reserved.
+          <div className="absolute -z-10 top-0 inset-0 bg-gradient-to-t from-primary/15 via-transparent to-transparent" />
+   
+          <p>&copy; {new Date().getFullYear()} NOVÉLLA all rights reserved.</p>
+          <p className="mt-1">
+            Powered by{" "}
+            <a 
+              href="https://wa.me/96407701411893"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline "
+            >
+              Al-Code
+            </a>
           </p>
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            <span className="text-xs text-muted-foreground tracking-wider">Precision. Power. Innovation.</span>
-          </div>
+        
         </div>
       </div>
     </footer>
