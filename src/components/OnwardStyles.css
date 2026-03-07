@@ -1,7 +1,7 @@
 /* --- Desktop Styles (350vh for smooth scroll) --- */
 .onward-container {
   background-color: #141414;
-  height: 350vh; 
+  height: 250vh; 
   position: relative;
 }
 
@@ -15,6 +15,7 @@
   justify-content: center;
   overflow: hidden;
 }
+
 /* ─── Wave Animation ─── */
 .wave-path {
   animation: waveMove 2s ease-in-out infinite;
@@ -42,7 +43,6 @@
   position: absolute;
   width: 500px;
   z-index: 1;
-  
 }
 
 .fixed-left-text { left: 10%; }
@@ -59,64 +59,72 @@
   left: 5%;
   z-index: 10;
   width: 250px;
+ 
 }
 
 .logo-n-wrapper { width: 100%; }
 .logo-svg { width: 100%; height: auto; }
 
-/* --- Mobile & Tablet Styles (بەو شێوەیەی داوات کرد) --- */
+/* --- Mobile & Tablet Styles --- */
 @media (max-width: 900px) {
   .onward-container {
-    height: 300vh; /* هێشتا بەرزی زۆرە تا ڕەنگەکە بە جوانی بگۆڕێت */
+    height: 400vh;
   }
 
   .sticky-wrapper {
     flex-direction: column;
-    justify-content: space-between; /* دابەشکردنی سەرەوە، ناوەڕاست، خوارەوە */
-    padding: 20px 20px;
+    justify-content: center; /* گۆڕدرا لە space-between بۆ center بۆ ئەوەی نەچێتە دەرەوە */
+    align-items: center;
+    gap: 2rem; /* بۆشاییەکی جێگیری داوەتێ لە نێوان هەر سێ بەشەکە */
+    padding: 20px;
+    height: 100dvh; /* 100dvh بەکارهاتووە بۆ ئەوەی ڕێک بەقەد شاشەی مۆبایل بێت بێ کێشەی URL bar */
     box-sizing: border-box;
+    overflow: hidden; /* ڕێگری لە چوونە دەرەوە دەکات */
   }
 
-  /* تێکستی یەکەم دێتە سەرەوە */
   .fixed-right-text {
     position: relative;
     top: 0;
     right: 0;
     width: 100%;
     order: 1;
-    text-align: center;
+    text-align: start;
   }
 
-  /* پیتی N لە ناوەڕاست جێگیر دەبێت */
   .visuals-layer {
     position: relative;
     left: 0;
-    width: 200px;
+    width: 180px; /* کەمێک بچووک کرایەوە بۆ ئەوەی جێگەی تێکستەکان ببێتەوە */
     order: 2;
-    margin: 0 auto;
-    transform: none !important; /* لادانی جوڵەی ئاسۆیی */
+    margin: 0;
+    transform: none !important;
   }
 
-  /* تێکستی دووەم دێتە خوارەوە */
   .fixed-left-text {
     position: relative;
     bottom: 0;
     left: 0;
     width: 100%;
     order: 3;
-    text-align: center;
+    text-align: start;
+    z-index: 30;
   }
 
-  /* ڕێکخستنی قەبارەی فۆنتەکان بۆ مۆبایل */
+  /* ڕێکخستنی ناوەڕاست بۆ تێکستەکان بەبێ تێکدانی دێسکتۆپ */
+  .text-box {
+    text-align: start;
+    margin: 0 auto;
+  }
+
   .text-box h3 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
   }
   
   .text-box p {
-    font-size: 0.95rem;
-    max-width: 90%;
-    /* margin: 0 auto; */
+    font-size: 1rem;
+    max-width: 95%;
+    margin: 0 auto;
+    line-height: 1.5;
   }
-  
- 
 }

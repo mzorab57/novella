@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useSpring, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Aos } from "../components/ui/aos";
-import goalBg from '../assets/goal-hero.jpeg'
 
 
 
@@ -117,24 +116,25 @@ function TagPill({ text }) {
 // animation kai yakam
 function InductionCoilIllustration() {
   return (
-    <svg viewBox="0 0 400 400" fill="none" className="w-full h-full">
+    <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
       {/* Outer rings */}
       {[160, 140, 120, 100, 80, 60].map((r, i) => (
         <motion.circle
           key={i}
           cx="200" cy="200" r={r}
           stroke="#C61E1E"
-          strokeWidth={i === 0 ? "1" : "4"}
-          opacity={0.15 + i * 0.05}
+          strokeWidth={i === 0 ? "2" : "3"} // ئەستووری زیادکراوە
+          vectorEffect="non-scaling-stroke" // بۆ ئایفۆن گرنگە
+          opacity={0.2 + i * 0.05}
           initial={{ pathLength: 0, opacity: 0 }}
-          whileInView={{ pathLength: 1, opacity: 0.15 + i * 0.05 }}
-          viewport={{ once: true }}
+          whileInView={{ pathLength: 1, opacity: 0.2 + i * 0.05 }}
+          viewport={{ once: true, margin: "-50px" }} // زووتر کار دەکات لە مۆبایل
           transition={{ duration: 1.5, delay: i * 0.15, ease: "easeOut" }}
         />
       ))}
       {/* Center dot */}
       <motion.circle
-        cx="200" cy="200" r="8" fill="#C61E1E" opacity="0.6"
+        cx="200" cy="200" r="10" fill="#C61E1E" opacity="0.8"
         initial={{ scale: 0 }}
         whileInView={{ scale: 1 }}
         viewport={{ once: true }}
@@ -148,8 +148,9 @@ function InductionCoilIllustration() {
           x2={200 + 170 * Math.cos((deg * Math.PI) / 180)}
           y2={200 + 170 * Math.sin((deg * Math.PI) / 180)}
           stroke="#C61E1E"
-          strokeWidth="0.7"
-          opacity="0.1"
+          strokeWidth="1.5" // ئەستووری زیادکراوە
+          vectorEffect="non-scaling-stroke"
+          opacity="0.3" // ڕوونتر کراوە
           initial={{ pathLength: 0 }}
           whileInView={{ pathLength: 1 }}
           viewport={{ once: true }}
@@ -157,7 +158,7 @@ function InductionCoilIllustration() {
         />
       ))}
       {/* Glow */}
-      <circle cx="200" cy="200" r="80" fill="url(#coilGlow)" opacity="0.2" />
+      <circle cx="200" cy="200" r="80" fill="url(#coilGlow)" opacity="0.3" />
       <defs>
         <radialGradient id="coilGlow">
           <stop stopColor="#C61E1E" />
@@ -170,20 +171,22 @@ function InductionCoilIllustration() {
 // animation kai dwam
 function CulinaryIllustration() {
   return (
-    <svg viewBox="0 0 400 400" fill="none" className="w-full h-full">
+    <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
       {/* Pan base */}
       <motion.rect
         x="80" y="200" width="240" height="20" rx="10"
-        fill="#1a1a1a" stroke="#C61E1E" strokeWidth="0.9" opacity="0.4"
+        fill="#1a1a1a" stroke="#C61E1E" strokeWidth="2" opacity="0.6"
+        vectorEffect="non-scaling-stroke"
         initial={{ scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
-        viewport={{ once: true }}
+        viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 1 }}
       />
       {/* Pan body */}
       <motion.path
         d="M100 200 Q100 120 200 100 Q300 120 300 200"
-        stroke="#C61E1E" strokeWidth="1" fill="none" opacity="0.3"
+        stroke="#C61E1E" strokeWidth="2" fill="none" opacity="0.5"
+        vectorEffect="non-scaling-stroke"
         initial={{ pathLength: 0 }}
         whileInView={{ pathLength: 1 }}
         viewport={{ once: true }}
@@ -197,9 +200,10 @@ function CulinaryIllustration() {
           stroke="#C61E1E"
           strokeWidth="4"
           fill="none"
-          opacity="0.4"
+          opacity="0.6"
+          vectorEffect="non-scaling-stroke"
           initial={{ pathLength: 0, opacity: 0 }}
-          whileInView={{ pathLength: 1, opacity: 0.2 }}
+          whileInView={{ pathLength: 1, opacity: 0.4 }}
           viewport={{ once: true }}
           transition={{ duration: 1.2, delay: 0.8 + i * 0.2 }}
         />
@@ -208,8 +212,8 @@ function CulinaryIllustration() {
       {[130, 170, 210, 250, 290].map((x, i) => (
         <motion.circle
           key={`d-${i}`}
-          cx={x} cy="250" r="4"
-          fill="#C61E1E" opacity="0.4"
+          cx={x} cy="250" r="5"
+          fill="#C61E1E" opacity="0.6"
           initial={{ scale: 0 }}
           whileInView={{ scale: 1 }}
           viewport={{ once: true }}
@@ -219,8 +223,9 @@ function CulinaryIllustration() {
       {/* Handle */}
       <motion.line
         x1="300" y1="200" x2="380" y2="180"
-        stroke="#C61E1E" strokeWidth="3.5" opacity="0.3"
+        stroke="#C61E1E" strokeWidth="4" opacity="0.5"
         strokeLinecap="round"
+        vectorEffect="non-scaling-stroke"
         initial={{ pathLength: 0 }}
         whileInView={{ pathLength: 1 }}
         viewport={{ once: true }}
@@ -234,65 +239,51 @@ function CulinaryIllustration() {
 
 function KitchenSceneIllustration() {
   return (
-    <svg viewBox="0 0 800 500"  fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
       {/* Countertop */}
       <rect x="0" y="200" width="800" height="300" fill="#0002" />
       <rect x="0" y="200" width="800" height="8" fill="#fff2" />
       {/* Marble veining */}
-      <path d="M50 202 Q200 204 350 203 Q500 201 700 205" stroke="rgba(255,255,255,0.1)" strokeWidth="0.5" />
-      <path d="M100 205 Q300 202 500 206 Q650 203 780 204" stroke="rgba(255,255,255,0.06)" strokeWidth="0.5" />
+      <path d="M50 202 Q200 204 350 203 Q500 201 700 205" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
+      <path d="M100 205 Q300 202 500 206 Q650 203 780 204" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
 
       {/* Cooktop flush in counter */}
       <motion.rect x="200" y="195" width="400" height="12" rx="2" fill="#0A0A0A" />
       <motion.rect x="205" y="197" width="390" height="8" rx="1" fill="#111" />
       {/* Burner indicators */}
-      <motion.circle cx="320" cy="201" r="25" stroke="#C9A96E" strokeWidth="0.5" opacity="0.4" />
-      <motion.circle cx="480" cy="201" r="30" stroke="#C9A96E" strokeWidth="0.5" opacity="0.4" />
+      <motion.circle cx="320" cy="201" r="25" stroke="#C9A96E" strokeWidth="1.5" opacity="0.8" vectorEffect="non-scaling-stroke" />
+      <motion.circle cx="480" cy="201" r="30" stroke="#C9A96E" strokeWidth="1.5" opacity="0.8" vectorEffect="non-scaling-stroke" />
 
       {/* Backsplash */}
       <motion.rect x="0" y="0" width="800" height="200" fill="#161616" />
       {/* Tile lines */}
       {[40, 80, 120, 160].map(y => (
-        <motion.line key={y} x1="0" y1={y} x2="800" y2={y} stroke="rgba(255,255,255,0.03)" strokeWidth="0.5" />
+        <motion.line key={y} x1="0" y1={y} x2="800" y2={y} stroke="rgba(255,255,255,0.15)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
       ))}
 
       {/* Range hood */}
-      <path d="M300 0 L300 80 L250 130 L550 130 L500 80 L500 0" fill="#1A1A1A" stroke="#222" strokeWidth="0.5" />
-      <motion.rect x="350" y="120" width="100" height="3" rx="1" fill="#C9A96E" opacity="0.3" />
+      <path d="M300 0 L300 80 L250 130 L550 130 L500 80 L500 0" fill="#1A1A1A" stroke="#444" strokeWidth="2" vectorEffect="non-scaling-stroke" />
+      <motion.rect x="350" y="120" width="100" height="4" rx="1" fill="#C9A96E" opacity="0.6" />
 
       {/* Ambient lighting from hood */}
-      <motion.rect x="260" y="130" width="280" height="70" fill="#a41E1E" opacity="0.08" />
+      <motion.rect x="260" y="130" width="280" height="70" fill="#a41E1E" opacity="0.15" />
 
       {/* Floating shelf */}
       <rect x="600" y="80" width="180" height="8" rx="2" fill="#222" />
       {/* Items on shelf */}
-      <rect x="620" y="50" width="25" height="30" rx="3" fill="#1E1E1E" stroke="#333" strokeWidth="0.5" />
-      <rect x="660" y="40" width="20" height="40" rx="2" fill="#1A1A1A" stroke="#333" strokeWidth="0.5" />
-      <circle cx="710" cy="65" r="12" fill="#1E1E1E" stroke="#333" strokeWidth="0.5" />
+      <rect x="620" y="50" width="25" height="30" rx="3" fill="#1E1E1E" stroke="#555" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
+      <rect x="660" y="40" width="20" height="40" rx="2" fill="#1A1A1A" stroke="#555" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
+      <circle cx="710" cy="65" r="12" fill="#1E1E1E" stroke="#555" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
 
       {/* Pan on cooktop */}
       <ellipse cx="480" cy="195" rx="35" ry="5" fill="#222" />
-      <path d="M445 195 Q445 175 480 175 Q515 175 515 195" fill="#1A1A1A" stroke="#333" strokeWidth="0.5" />
-      <motion.line x1="515" y1="185" x2="560" y2="183" stroke="#333" strokeWidth="3" strokeLinecap="round" />
+      <path d="M445 195 Q445 175 480 175 Q515 175 515 195" fill="#1A1A1A" stroke="#555" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
+      <motion.line x1="515" y1="185" x2="560" y2="183" stroke="#555" strokeWidth="4" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
 
       {/* Steam wisps */}
-      <path d="M470 170 Q468 155 472 140" stroke="rgba(255,255,255,0.08)" strokeWidth="1" fill="none" />
-      <path d="M480 168 Q482 150 478 135" stroke="rgba(255,255,255,0.06)" strokeWidth="1" fill="none" />
-      <path d="M490 170 Q488 152 492 138" stroke="rgba(255,255,255,0.05)" strokeWidth="1" fill="none" />
-
-      <defs>
-        <linearGradient id="marbleGrad" x1="0" y1="200" x2="800" y2="208" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stopColor="#2A2A2A" />
-          <stop offset="0.3" stopColor="#333" />
-          <stop offset="0.5" stopColor="#2E2E2E" />
-          <stop offset="0.7" stopColor="#353535" />
-          <stop offset="1" stopColor="#2A2A2A" />
-        </linearGradient>
-        <linearGradient id="ambientLight" x1="400" y1="130" x2="400" y2="200" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stopColor="#C9A96E" />
-          <stop offset="1" stopColor="transparent" />
-        </linearGradient>
-      </defs>
+      <path d="M470 170 Q468 155 472 140" stroke="rgba(255,255,255,0.2)" strokeWidth="2" fill="none" vectorEffect="non-scaling-stroke" />
+      <path d="M480 168 Q482 150 478 135" stroke="rgba(255,255,255,0.15)" strokeWidth="2" fill="none" vectorEffect="non-scaling-stroke" />
+      <path d="M490 170 Q488 152 492 138" stroke="rgba(255,255,255,0.1)" strokeWidth="2" fill="none" vectorEffect="non-scaling-stroke" />
     </svg>
   );
 }
@@ -483,25 +474,14 @@ function SideNav() {
 /* ═══════════════════════════════════════════════════
    GOAL PAGE MAIN
    ═══════════════════════════════════════════════════ */
-const heroImages = ['https://id-preview--417042ee-646b-4da0-81b1-9c79f52ad16c.lovable.app/assets/about-hero-D06USkfW.jpg', 'https://id-preview--417042ee-646b-4da0-81b1-9c79f52ad16c.lovable.app/assets/about-hero-D06USkfW.jpg', 'https://id-preview--417042ee-646b-4da0-81b1-9c79f52ad16c.lovable.app/assets/about-hero-D06USkfW.jpg'];
 export default function GoalSection() {
   // Scroll to top on mount
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-    const [currentSlide, setCurrentSlide] = useState(0);
-
-  
-    useEffect(() => {
-      const slideInterval = setInterval(() => {
-        setCurrentSlide((prev) => (prev + 1) % heroImages.length);
-      }, 5000);
-      return () => clearInterval(slideInterval);
-    }, []);
-
   return (
-    <div className="min-h-screen bg-luxury-dark text-luxury-cream overflow-x-hidden noise-texture">
+    <div className="  text-luxury-cream   ">
          
       <ScrollProgress />
       
@@ -513,7 +493,7 @@ export default function GoalSection() {
       {/* ═══════════════════════════════════════════
           SECTION 01 — PRECISION & POWER
           ═══════════════════════════════════════════ */}
-      <section id="section-01" data-section="section-01" className="relative py-32 md:py-48">
+      <section id="section-01" data-section="section-01" className="relative my-32 md:py-48">
         <div className="absolute top-0 left-0 right-0">
           <HorizontalLine />
         </div>
@@ -558,11 +538,11 @@ export default function GoalSection() {
                 </p>
               </Reveal>
 
-              <Reveal delay={0.3}>
+              {/* <Reveal delay={0.3}>
                 <p className="font-cormorant text-neutral-400 text-lg md:text-xl text-luxury-silver/60 leading-relaxed mb-12">
                   Experience unparalleled energy efficiency and safety features, including automatic pan detection and cool-to-the-touch surfaces. Perfect timing, perfect results, every time.
                 </p>
-              </Reveal>
+              </Reveal> */}
 
               {/* Stats strip */}
               <Reveal delay={0.4}>
@@ -698,14 +678,14 @@ export default function GoalSection() {
                 </p>
               </Reveal>
 
-              <Reveal delay={0.3}>
+              {/* <Reveal delay={0.3}>
                 <p className="font-cormorant text-neutral-400 text-lg md:text-xl text-luxury-silver/60 leading-relaxed mb-12">
                   Our induction technology provides the exact heat you need, when you need it. Unleash your inner chef and transform every meal into a masterpiece.
                 </p>
-              </Reveal>
+              </Reveal> */}
 
               {/* Techniques list */}
-              <Reveal delay={0.4}>
+              {/* <Reveal delay={0.4}>
                 <div className="space-y-4 border-t border-primary/10 pt-8">
                   {["Precision Searing", "Gentle Tempering", "Perfect Emulsions", "Rapid Boiling"].map((t, i) => (
                     <div key={i} className="flex items-center gap-4 group">
@@ -714,7 +694,7 @@ export default function GoalSection() {
                     </div>
                   ))}
                 </div>
-              </Reveal>
+              </Reveal> */}
             </div>
           </div>
         </div>
@@ -795,11 +775,11 @@ export default function GoalSection() {
                 </p>
               </Reveal>
 
-              <Reveal delay={0.3}>
+              {/* <Reveal delay={0.3}>
                 <p className="font-cormorant text-neutral-400 text-lg md:text-xl text-luxury-silver/60 leading-relaxed mb-12">
                   The premium black ceramic glass and minimalist controls offer a timeless aesthetic that complements marble, quartz, or wood, elevating the overall design of your culinary space. Experience the epitome of understated luxury.
                 </p>
-              </Reveal>
+              </Reveal> */}
 
               {/* Material pills */}
               <Reveal delay={0.4}>

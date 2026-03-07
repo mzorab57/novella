@@ -8,7 +8,7 @@ const OnwardSection = () => {
 
   // پشکنینی قەبارەی شاشە
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 100);
+    const checkMobile = () => setIsMobile(window.innerWidth < 900);
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
@@ -16,7 +16,7 @@ const OnwardSection = () => {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end end"]
+    offset: ["start end", "end start"]
   });
 
   // ئەنیمەیشنی جوڵە بۆ دێسکتۆپ (لە مۆبایلدا دەبێتە 0 واتە لە ناوەڕاست دەمێنێتەوە)
@@ -43,12 +43,8 @@ const OnwardSection = () => {
 
 {/* grid krdny bg */}
       <div className="absolute inset-0 bg-grid opacity-100 z-0" />
-
-      <div className="sticky-wrapper max-w-7xl mx-auto">
-        
-        
-        {/* تێکستی یەکەم - لە مۆبایلدا لە سەرەوەیە */}
-        <motion.div className="fixed-right-text text-box-wrapper max-w-lg mx-auto text-center" style={{ opacity: textOneOpacity }}>
+     {/* تێکستی یەکەم - لە مۆبایلدا لە سەرەوەیە */}
+        <motion.div className="fixed-right-text text-box-wrapper px-4 pt-7 max-w-lg mx-auto text-center" style={{ opacity: textOneOpacity }}>
           <div className="text-box mt-24 lg:mt-0 max-w-lg text-center">
            
             <h3 className='font-playfair '><em className='text-primary'>B2B </em> & PARTNERSHIPS</h3>
@@ -56,13 +52,18 @@ const OnwardSection = () => {
            
           </div>
         </motion.div>
+      <div className="sticky-wrapper max-w-7xl mx-auto ">
+        
+        
+   
+
 <div className="absolute -top-40 inset-0  animate-pulse bg-[radial-gradient(ellipse_at_center,rgba(198,30,30,0.1)_0%,transparent_60%)]" />
  
         {/* پیتی N - لە مۆبایلدا لە ناوەڕاست جێگیرە بەڵام ڕەنگەکەی دەگۆڕێت */}
         {/* پیتی N بە ئەنیمەیشنی Wave */}
         <motion.div className="visuals-layer " style={{ x: moveX }}>
             
-          <div className="visual-group  size-72 md:size-80 lg:size-96  -translate-x-16 lg:translate-x-0 ">
+          <div className=" size-64 md:size-80 lg:size-96 my-16 -translate-x-16 lg:translate-x-0 ">
             <div className="logo-n-wrapper ">
                  {/* Radial glow behind */}
         {/* <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(198,30,30,0.2)_20%,transparent_60%)]" /> */}
@@ -127,17 +128,12 @@ const OnwardSection = () => {
         </motion.div>
 
         {/* تێکستی دووەم - لە مۆبایلدا لە خوارەوەیە */}
-        <motion.div className="fixed-left-text text-box-wrapper max-w-lg text-center " style={{ opacity: textTwoOpacity }}>
-          <div className="text-box  max-w-lg pt-14 md:pt-0">
+        <motion.div className="fixed-left-text text-box-wrapper max-w-lg text-center mb-10" style={{ opacity: textTwoOpacity }}>
+          <div className="text-box  max-w-lg my-14 md:pt-0">
            
             <h3 ><em className='text-primary font-playfair'>Why </em> & Partner with Novella?</h3>
-            <p className='font-cormorant italic '>Volume pricing & exclusive discounts,
-Dedicated account manager, 
-Priority technical support, 
-Flexible payment terms, 
-Custom installation solutions, 
-Extended warranty programs.</p>
-           
+            <p className='font-cormorant italic '>
+                Volume pricing & exclusive discounts,Dedicated account manager,Priority technical support, Flexible payment terms, Custom installation solutions, Extended warranty programs.</p>
           </div>
         </motion.div>
 
