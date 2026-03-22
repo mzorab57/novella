@@ -162,13 +162,6 @@ const Navbar = () => {
           ))}
         </nav>
 
-        <div className="absolute bottom-8 left-6 right-6">
-          <div className="border-t border-white/10 pt-4">
-            <p className="font-mono text-[9px] text-white/30 tracking-[0.2em] uppercase text-center">
-              © 2025 Novèlla
-            </p>
-          </div>
-        </div>
       </div>
 
       <style>{`

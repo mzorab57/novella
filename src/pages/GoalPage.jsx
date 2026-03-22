@@ -1,25 +1,12 @@
 import { useState, useEffect, useRef } from "react";
-import { motion, useScroll, useSpring, useInView } from "framer-motion";
-import { Link } from "react-router-dom";
+import { motion, useInView } from "framer-motion";
+
 import { Aos } from "../components/ui/aos";
 import goalBg from '../assets/goal-hero.jpeg'
 
 
 
-/* ═══════════════════════════════════════════════════
-   SCROLL PROGRESS BAR
-   ═══════════════════════════════════════════════════ */
-function ScrollProgress() {
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
-  return (
-    <motion.div
-      className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-primary/80 via-primary to-primary-light z-[60] origin-left"
-      style={{ scaleX }}
-    />
-  );
-}
 
 function Reveal({ children, delay = 0, className = "" }) {
   const ref = useRef(null);
@@ -297,84 +284,7 @@ function KitchenSceneIllustration() {
   );
 }
 
-// animation kai seyam
-// function KitchenSceneIllustration() {
-//   return (
-//     <svg viewBox="0 0 400 400" fill="none" className="w-full h-full">
-//       {/* Countertop line */}
-//       <motion.line
-//         x1="0" y1="250" x2="400" y2="250"
-//         stroke="#C61E1E" strokeWidth="0.5" opacity="0.3"
-//         initial={{ pathLength: 0 }}
-//         whileInView={{ pathLength: 1 }}
-//         viewport={{ once: true }}
-//         transition={{ duration: 1.5 }}
-//       />
-//       {/* Flush-mount cooktop */}
-//       <motion.rect
-//         x="60" y="235" width="280" height="15" rx="2"
-//         fill="#111" stroke="#C61E1E" strokeWidth="0.5" opacity="0.5"
-//         initial={{ scaleX: 0 }}
-//         whileInView={{ scaleX: 1 }}
-//         viewport={{ once: true }}
-//         transition={{ duration: 1, delay: 0.3 }}
-//       />
-//       {/* Burner zones */}
-//       {[140, 260].map((cx, i) => (
-//         <g key={i}>
-//           <motion.circle
-//             cx={cx} cy="242" r="30"
-//             stroke="#C61E1E" strokeWidth="0.5" opacity="0.3"
-//             initial={{ scale: 0, opacity: 0 }}
-//             whileInView={{ scale: 1, opacity: 0.3 }}
-//             viewport={{ once: true }}
-//             transition={{ duration: 0.8, delay: 0.8 + i * 0.2 }}
-//           />
-//           <motion.circle
-//             cx={cx} cy="242" r="20"
-//             stroke="#C61E1E" strokeWidth="0.3" opacity="0.2"
-//             initial={{ scale: 0 }}
-//             whileInView={{ scale: 1 }}
-//             viewport={{ once: true }}
-//             transition={{ duration: 0.8, delay: 1 + i * 0.2 }}
-//           />
-//           <motion.circle
-//             cx={cx} cy="242" r="3"
-//             fill="#C61E1E" opacity="0.5"
-//             initial={{ scale: 0 }}
-//             whileInView={{ scale: 1 }}
-//             viewport={{ once: true }}
-//             transition={{ duration: 0.5, delay: 1.2 + i * 0.2 }}
-//           />
-//         </g>
-//       ))}
-//       {/* Dimension lines */}
-//       <motion.g
-//         initial={{ opacity: 0 }}
-//         whileInView={{ opacity: 1 }}
-//         viewport={{ once: true }}
-//         transition={{ duration: 0.8, delay: 1.5 }}
-//       >
-//         <line x1="60" y1="270" x2="340" y2="270" stroke="#C61E1E" strokeWidth="0.3" opacity="0.3" />
-//         <line x1="60" y1="265" x2="60" y2="275" stroke="#C61E1E" strokeWidth="0.3" opacity="0.3" />
-//         <line x1="340" y1="265" x2="340" y2="275" stroke="#C61E1E" strokeWidth="0.3" opacity="0.3" />
-//         <text x="200" y="285" textAnchor="middle" fill="#C61E1E" opacity="0.4" fontSize="8" fontFamily="monospace">780mm</text>
-//       </motion.g>
-//       {/* Grid pattern behind */}
-//       {Array.from({ length: 8 }).map((_, i) => (
-//         <motion.line
-//           key={`h-${i}`}
-//           x1="0" y1={i * 50 + 50} x2="400" y2={i * 50 + 50}
-//           stroke="#C61E1E" strokeWidth="0.1" opacity="0.1"
-//           initial={{ pathLength: 0 }}
-//           whileInView={{ pathLength: 1 }}
-//           viewport={{ once: true }}
-//           transition={{ duration: 1, delay: i * 0.05 }}
-//         />
-//       ))}
-//     </svg>
-//   );
-// }
+
 
 
 /* ═══════════════════════════════════════════════════
@@ -503,7 +413,7 @@ export default function GoalPage() {
   return (
     <div className="min-h-screen bg-luxury-dark text-luxury-cream overflow-x-hidden noise-texture">
          
-      <ScrollProgress />
+   
       
 
      
@@ -675,17 +585,17 @@ export default function GoalPage() {
               <Reveal delay={0.4}>
                 <div className="grid grid-cols-3 gap-6 border-t border-primary/10 pt-8">
                   <div>
-                    <span className="font-mono text-2xl md:text-3xl text-primary/80 font-bold">7.4</span>
+                    <span className="font-mono text-2xl md:text-3xl text-primary/80 font-bold">6.4</span>
                     <span className="font-mono text-sm text-primary/50 ml-1">kW</span>
                     <p className="font-inter text-[9px] uppercase tracking-[0.3em] text-primary/50 mt-1">Peak Power</p>
                   </div>
                   <div>
-                    <span className="font-mono text-2xl md:text-3xl text-primary/80 font-bold">&lt;1</span>
+                    <span className="font-mono text-2xl md:text-3xl text-primary/80 font-bold">100</span>
                     <span className="font-mono text-sm text-primary/50 ml-1">°C</span>
-                    <p className="font-inter text-[9px] uppercase tracking-[0.3em] text-primary/50 mt-1">Precision</p>
+                    <p className="font-inter text-[9px] uppercase tracking-[0.3em] text-primary/50 mt-1">Max Temperature</p>
                   </div>
                   <div>
-                    <span className="font-mono text-2xl md:text-3xl text-primary/80 font-bold">93</span>
+                    <span className="font-mono text-2xl md:text-3xl text-primary/80 font-bold">100</span>
                     <span className="font-mono text-sm text-primary/50 ml-1">%</span>
                     <p className="font-inter  text-[9px] uppercase tracking-[0.3em] text-primary/50 mt-1">Efficiency</p>
                   </div>
@@ -712,11 +622,6 @@ export default function GoalPage() {
                     <InductionCoilIllustration />
                   </div>
 
-                  {/* Label */}
-                  <div className="absolute -bottom-10 right-0 flex items-center gap-3">
-                    <div className="w-8 h-px bg-primary/90" />
-                    <span className="font-mono text-[12px] text-neutral-400 tracking-[0.3em] uppercase">Fig. 01</span>
-                  </div>
                 </div>
               </ParallaxSection>
             </div>
@@ -757,11 +662,6 @@ export default function GoalPage() {
                     <CulinaryIllustration />
                   </div>
 
-                  {/* Label */}
-                  <div className="absolute -bottom-10 right-0 flex items-center gap-3">
-                    <div className="w-8 h-px bg-primary/90" />
-                    <span className="font-mono text-[12px] text-neutral-400 tracking-[0.3em] uppercase">Fig. 01</span>
-                  </div>
                 </div>
               </ParallaxSection>
             </div>
@@ -937,10 +837,6 @@ export default function GoalPage() {
                     <KitchenSceneIllustration />
                   </div>
 
-                  <div className="absolute -bottom-8 right-0 flex items-center gap-3">
-                    <div className="w-8 h-px bg-primary/30" />
-                    <span className="font-mono text-[9px] text-neutral-400 tracking-[0.3em] uppercase">Fig. 03</span>
-                  </div>
                 </div>
               </ParallaxSection>
             </div>

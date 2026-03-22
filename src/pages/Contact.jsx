@@ -1,12 +1,10 @@
 import { useState } from "react";
-import { Mail, Phone, MapPin, Send, Instagram, Globe } from "lucide-react";
+import { Mail, Send, Globe } from "lucide-react";
 import { useInView } from "../hooks/useInView";
 
 const contactInfo = [
   { icon: Globe, label: "Website", value: "novella-inc.com", href: "https://novella-inc.com/" },
   { icon: Mail, label: "Email", value: "contact@novella-inc.com", href: "mailto:info@novella-inc.com" },
-  { icon: Phone, label: "Phone", value: "+964 750 668 3552", href: "tel:+9647506683552" },
-  { icon: MapPin, label: "Location", value: "Available Worldwide", href: "#" },
 ];
 
 const Contact = () => {
@@ -79,28 +77,6 @@ const Contact = () => {
               ))}
             </div>
 
-            {/* Social */}
-            <div>
-              <div className="text-xs text-muted-foreground tracking-widest uppercase mb-4">Follow Us</div>
-              <div className="flex gap-3">
-                <a
-                  href="https://novella-inc.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 transition-all"
-                >
-                  <Instagram size={18} />
-                </a>
-                <a
-                  href="https://novella-inc.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 transition-all"
-                >
-                  <Globe size={18} />
-                </a>
-              </div>
-            </div>
           </div>
 
           {/* Form */}

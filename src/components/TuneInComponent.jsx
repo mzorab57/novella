@@ -178,12 +178,12 @@ const TuneInComponent = () => {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            <SpecCard icon="⚡" title="Max Power" value="7,400" unit="WATTS" delay={0} />
+            <SpecCard icon="⚡" title="Max Power" value="640–6,400" unit="WATTS" delay={0} />
             <SpecCard icon="◎" title="Cooking Zones" value="4" unit="ZONES" delay={0.1} />
             <SpecCard icon="⬡" title="Surface" value="77" unit="CM" delay={0.2} />
             <SpecCard icon="△" title="Profile" value="5.1" unit="CM SLIM" delay={0.3} />
-            <SpecCard icon="◇" title="Efficiency" value="94" unit="%" delay={0.4} />
-            <SpecCard icon="⏱" title="Boil Time" value="<90" unit="SEC" delay={0.5} />
+            <SpecCard icon="◇" title="Efficiency" value="100" unit="%" delay={0.4} />
+            <SpecCard icon="⏱" title="Boil Time" value="120" unit="SEC" delay={0.5} />
             <SpecCard icon="🛡" title="Safety" value="12" unit="FEATURES" delay={0.6} />
             <SpecCard icon="✦" title="Warranty" value="5" unit="YEARS" delay={0.7} />
           </div>
@@ -233,33 +233,6 @@ const TuneInComponent = () => {
         </div>
       </section> */}
 
-      {/* ═══ FOOTER ═══ */}
-      {/* <footer className="relative py-16 border-t border-neutral-800/30">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-4 border border-red-700/50 rotate-45 flex items-center justify-center">
-                <div className="w-1.5 h-1.5 bg-red-600/60 rotate-45" />
-              </div>
-              <span className="font-serif text-sm tracking-[0.15em] text-red-100/50 ml-1">NOVÈLLA</span>
-            </div>
-            <p className="font-mono text-[9px] text-neutral-600 tracking-wider">
-              © 2025 NOVÈLLA CULINARY SYSTEMS. ALL RIGHTS RESERVED.
-            </p>
-            <div className="flex items-center gap-6">
-              {["Privacy", "Terms", "Contact"].map((item) => (
-                <a
-                  key={item}
-                  href="#"
-                  className="font-mono text-[9px] uppercase tracking-wider text-neutral-600 hover:text-red-500/60 transition-colors"
-                >
-                  {item}
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      </footer> */}
     </section>
   );
 };

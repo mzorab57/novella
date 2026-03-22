@@ -14,6 +14,10 @@ function degToPercent(deg) {
   return Math.round(((deg - MIN_DEG) / (MAX_DEG - MIN_DEG)) * 100);
 }
 
+function percentToLevel(percent) {
+  return 1 + Math.round((percent / 100) * 9);
+}
+
 function percentToDeg(percent) {
   return MIN_DEG + (percent / 100) * (MAX_DEG - MIN_DEG);
 }
@@ -86,6 +90,7 @@ function ReactorKnob({
   };
   const c = colorMap[accentColor] || colorMap.red;
   const percent = clamp(degToPercent(rotationDeg), 0, 100);
+  const level = percentToLevel(percent);
   const lightOpacity = 0.03 + (percent / 100) * 0.32;
 
   return (
@@ -164,7 +169,7 @@ function ReactorKnob({
         style={{ bottom: -8 }}
       >
         <span className="text-[9px] text-neutral-600 font-mono tracking-[0.2em] mb-1">{outputLabel}</span>
-        <DisplayValue value={percent} color={c} />
+        <DisplayValue value={level} color={c} />
       </div>
     </div>
   );
@@ -199,11 +204,10 @@ function DisplayValue({
         className="absolute inset-0 blur-sm font-mono text-2xl font-black tabular-nums tracking-widest"
         style={{ color: `${color.hex}50` }}
       >
-        {value.toString().padStart(3, "0")}
+        {value.toString().padStart(2, "0")}
       </span>
       <span className="relative font-mono text-2xl font-black tabular-nums tracking-widest" style={{ color: color.hex }}>
-        {value.toString().padStart(3, "0")}
-        <span className="text-xs text-neutral-600 ml-1">%</span>
+        {value.toString().padStart(2, "0")}
       </span>
     </div>
   );

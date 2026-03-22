@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { motion, useScroll, useSpring, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Aos } from "../components/ui/aos";
@@ -90,11 +90,11 @@ function SectionNumber({ num }) {
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="relative">
-        <div className="w-14 h-14 border border-primary/30 flex items-center justify-center rotate-45">
-          <span className="font-mono text-sm text-primary/80 -rotate-45 tracking-widest">{num}</span>
+        <div className="w-14 h-14 border border-white/30 flex items-center justify-center rotate-45">
+          <span className="font-mono text-sm text-white/80 -rotate-45 tracking-widest">{num}</span>
         </div>
       </div>
-      <div className="flex-1 h-px bg-gradient-to-r from-primary/30 to-transparent" />
+      <div className="flex-1 h-px bg-gradient-to-r from-white/30 to-transparent" />
     </motion.div>
   );
 }
@@ -104,7 +104,7 @@ function SectionNumber({ num }) {
    ═══════════════════════════════════════════════════ */
 function TagPill({ text }) {
   return (
-    <span className="inline-block font-inter text-[9px] uppercase tracking-[0.4em] text-primary/70 border border-primary/20 px-4 py-1.5 mr-3 mb-3">
+    <span className="inline-block font-inter text-[9px] uppercase tracking-[0.4em] text-white border border-white/20 px-4 py-1.5 mr-3 mb-3">
       {text}
     </span>
   );
@@ -288,188 +288,10 @@ function KitchenSceneIllustration() {
   );
 }
 
-// animation kai seyam
-// function KitchenSceneIllustration() {
-//   return (
-//     <svg viewBox="0 0 400 400" fill="none" className="w-full h-full">
-//       {/* Countertop line */}
-//       <motion.line
-//         x1="0" y1="250" x2="400" y2="250"
-//         stroke="#C61E1E" strokeWidth="0.5" opacity="0.3"
-//         initial={{ pathLength: 0 }}
-//         whileInView={{ pathLength: 1 }}
-//         viewport={{ once: true }}
-//         transition={{ duration: 1.5 }}
-//       />
-//       {/* Flush-mount cooktop */}
-//       <motion.rect
-//         x="60" y="235" width="280" height="15" rx="2"
-//         fill="#111" stroke="#C61E1E" strokeWidth="0.5" opacity="0.5"
-//         initial={{ scaleX: 0 }}
-//         whileInView={{ scaleX: 1 }}
-//         viewport={{ once: true }}
-//         transition={{ duration: 1, delay: 0.3 }}
-//       />
-//       {/* Burner zones */}
-//       {[140, 260].map((cx, i) => (
-//         <g key={i}>
-//           <motion.circle
-//             cx={cx} cy="242" r="30"
-//             stroke="#C61E1E" strokeWidth="0.5" opacity="0.3"
-//             initial={{ scale: 0, opacity: 0 }}
-//             whileInView={{ scale: 1, opacity: 0.3 }}
-//             viewport={{ once: true }}
-//             transition={{ duration: 0.8, delay: 0.8 + i * 0.2 }}
-//           />
-//           <motion.circle
-//             cx={cx} cy="242" r="20"
-//             stroke="#C61E1E" strokeWidth="0.3" opacity="0.2"
-//             initial={{ scale: 0 }}
-//             whileInView={{ scale: 1 }}
-//             viewport={{ once: true }}
-//             transition={{ duration: 0.8, delay: 1 + i * 0.2 }}
-//           />
-//           <motion.circle
-//             cx={cx} cy="242" r="3"
-//             fill="#C61E1E" opacity="0.5"
-//             initial={{ scale: 0 }}
-//             whileInView={{ scale: 1 }}
-//             viewport={{ once: true }}
-//             transition={{ duration: 0.5, delay: 1.2 + i * 0.2 }}
-//           />
-//         </g>
-//       ))}
-//       {/* Dimension lines */}
-//       <motion.g
-//         initial={{ opacity: 0 }}
-//         whileInView={{ opacity: 1 }}
-//         viewport={{ once: true }}
-//         transition={{ duration: 0.8, delay: 1.5 }}
-//       >
-//         <line x1="60" y1="270" x2="340" y2="270" stroke="#C61E1E" strokeWidth="0.3" opacity="0.3" />
-//         <line x1="60" y1="265" x2="60" y2="275" stroke="#C61E1E" strokeWidth="0.3" opacity="0.3" />
-//         <line x1="340" y1="265" x2="340" y2="275" stroke="#C61E1E" strokeWidth="0.3" opacity="0.3" />
-//         <text x="200" y="285" textAnchor="middle" fill="#C61E1E" opacity="0.4" fontSize="8" fontFamily="monospace">780mm</text>
-//       </motion.g>
-//       {/* Grid pattern behind */}
-//       {Array.from({ length: 8 }).map((_, i) => (
-//         <motion.line
-//           key={`h-${i}`}
-//           x1="0" y1={i * 50 + 50} x2="400" y2={i * 50 + 50}
-//           stroke="#C61E1E" strokeWidth="0.1" opacity="0.1"
-//           initial={{ pathLength: 0 }}
-//           whileInView={{ pathLength: 1 }}
-//           viewport={{ once: true }}
-//           transition={{ duration: 1, delay: i * 0.05 }}
-//         />
-//       ))}
-//     </svg>
-//   );
-// }
 
 
-/* ═══════════════════════════════════════════════════
-   COMPACT CARD (For items 04–09)
-   ═══════════════════════════════════════════════════ */
-function CompactCard({ num, title, desc, delay = 0, icon }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
 
-  return (
-    <motion.div
-      ref={ref}
-      className="group relative"
-      initial={{ opacity: 0, y: 40 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
-    >
-      <div className="relative p-8 border border-primary/10 hover:border-primary/30 bg-luxury-dark/80 backdrop-blur-sm transition-all duration-700 h-full">
-        {/* Hover gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-        
-        <div className="relative z-10">
-          {/* Number */}
-          <div className="flex items-center gap-3 mb-5">
-            <span className="font-mono text-[11px] text-primary/50 tracking-[0.3em]">{num}</span>
-            <div className="flex-1 h-px bg-primary/10 group-hover:bg-primary/20 transition-colors duration-500" />
-            <div className="w-8 h-8 border border-primary/20 flex items-center justify-center text-primary/50 group-hover:border-primary/40 group-hover:text-primary/70 transition-all duration-500">
-              {icon}
-            </div>
-          </div>
-          
-          <h3 className="font-playfair text-white text-lg text-luxury-cream mb-3 tracking-wide group-hover:text-primary/90 transition-colors duration-500">
-            {title}
-          </h3>
-          <p className="font-cormorant text-neutral-500  text-base leading-relaxed">
-            {desc}
-          </p>
-        </div>
 
-        {/* Corner accents */}
-        <div className="absolute top-0 left-0 w-5 h-5 border-t border-l border-primary/0 group-hover:border-primary/30 transition-all duration-700" />
-        <div className="absolute bottom-0 right-0 w-5 h-5 border-b border-r border-primary/0 group-hover:border-primary/30 transition-all duration-700" />
-      </div>
-    </motion.div>
-  );
-}
-
-/* ═══════════════════════════════════════════════════
-   SIDE NAV (Table of Contents)
-   ═══════════════════════════════════════════════════ */
-function SideNav() {
-  const [activeSection, setActiveSection] = useState("hero");
-
-  useEffect(() => {
-    const sections = document.querySelectorAll("[data-section]");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.getAttribute("data-section") || "");
-          }
-        });
-      },
-      { rootMargin: "-40% 0px -40% 0px" }
-    );
-    sections.forEach((s) => observer.observe(s));
-    return () => observer.disconnect();
-  }, []);
-
-  const items = [
-    { id: "hero", label: "Start" },
-    { id: "section-01", label: "01" },
-    { id: "section-02", label: "02" },
-    { id: "section-03", label: "03" },
-    { id: "section-more", label: "04–09" },
-  ];
-
-  return (
-    <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50 hidden lg:flex flex-col items-center gap-3">
-      {items.map((item) => (
-        <a
-          key={item.id}
-          href={`#${item.id}`}
-          className="group relative flex items-center"
-        >
-          <span
-            className={`absolute right-6 font-mono text-[9px] tracking-[0.3em] uppercase transition-all duration-300 whitespace-nowrap ${
-              activeSection === item.id ? "opacity-100 text-primary" : "opacity-0 group-hover:opacity-70 text-luxury-silver/50"
-            }`}
-          >
-            {item.label}
-          </span>
-          <div
-            className={`w-2 h-2 rounded-full border transition-all duration-500 ${
-              activeSection === item.id
-                ? "bg-primary border-primary scale-125"
-                : "border-luxury-silver/30 hover:border-primary/50"
-            }`}
-          />
-        </a>
-      ))}
-    </div>
-  );
-}
 
 /* ═══════════════════════════════════════════════════
    GOAL PAGE MAIN
@@ -493,80 +315,13 @@ export default function GoalSection() {
       {/* ═══════════════════════════════════════════
           SECTION 01 — PRECISION & POWER
           ═══════════════════════════════════════════ */}
-      <section id="section-01" data-section="section-01" className="relative my-32 md:py-48">
-        <div className="absolute top-0 left-0 right-0">
-          <HorizontalLine />
-        </div>
+      <section id="section-01" data-section="section-01" className="relative bg-gradient-to-r from-black/90 via-transparent to-black/90  py-32 md:py-48">
+       
 
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-            {/* Left — Text Content */}
-            <div>
-              <SectionNumber num="01" />
 
-              <Reveal>
-                <div className="flex flex-wrap gap-0 mb-6">
-                  <TagPill text="Technology" />
-                </div>
-              </Reveal>
-
-              <Reveal delay={0.1}>
-                <h2 className="font-playfair text-white text-4xl md:text-5xl lg:text-6xl tracking-wide leading-[1.1] mb-4">
-                  Precision<br />
-                  <span className="text-primary/80">&amp; Power</span>
-                </h2>
-              </Reveal>
-
-              <Reveal delay={0.15}>
-                <p className="font-cormorant text-neutral-500 text-xl md:text-2xl text-luxury-silver/70 italic mb-10 leading-relaxed">
-                  Instant heat, unmatched control. The future of cooking is here.
-                </p>
-              </Reveal>
-
-              <motion.div
-                className="w-full h-px bg-gradient-to-r from-primary/20 to-transparent mb-10"
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.2, delay: 0.3 }}
-                style={{ originX: 0 }}
-              />
-
-              <Reveal delay={0.2}>
-                <p className="font-cormorant text-neutral-400 text-lg md:text-xl text-luxury-silver/60 leading-relaxed mb-8">
-                  Our advanced induction coils generate precise magnetic fields that heat your cookware directly, not the surface. This results in instantaneous temperature changes, allowing you to go from a gentle simmer to a rolling boil in seconds.
-                </p>
-              </Reveal>
-
-              {/* <Reveal delay={0.3}>
-                <p className="font-cormorant text-neutral-400 text-lg md:text-xl text-luxury-silver/60 leading-relaxed mb-12">
-                  Experience unparalleled energy efficiency and safety features, including automatic pan detection and cool-to-the-touch surfaces. Perfect timing, perfect results, every time.
-                </p>
-              </Reveal> */}
-
-              {/* Stats strip */}
-              <Reveal delay={0.4}>
-                <div className="grid grid-cols-3 gap-6 border-t border-primary/10 pt-8">
-                  <div>
-                    <span className="font-mono text-2xl md:text-3xl text-primary/80 font-bold">7.4</span>
-                    <span className="font-mono text-sm text-primary/50 ml-1">kW</span>
-                    <p className="font-inter text-[9px] uppercase tracking-[0.3em] text-primary/50 mt-1">Peak Power</p>
-                  </div>
-                  <div>
-                    <span className="font-mono text-2xl md:text-3xl text-primary/80 font-bold">&lt;1</span>
-                    <span className="font-mono text-sm text-primary/50 ml-1">°C</span>
-                    <p className="font-inter text-[9px] uppercase tracking-[0.3em] text-primary/50 mt-1">Precision</p>
-                  </div>
-                  <div>
-                    <span className="font-mono text-2xl md:text-3xl text-primary/80 font-bold">93</span>
-                    <span className="font-mono text-sm text-primary/50 ml-1">%</span>
-                    <p className="font-inter  text-[9px] uppercase tracking-[0.3em] text-primary/50 mt-1">Efficiency</p>
-                  </div>
-                </div>
-              </Reveal>
-            </div>
-
-           {/* Right — Illustration */}
+            {/* Right — Illustration */}
             <div className="relative   ">
 
         
@@ -585,14 +340,71 @@ export default function GoalSection() {
                     <InductionCoilIllustration />
                   </div>
 
-                  {/* Label */}
-                  <div className="absolute -bottom-10 right-0 flex items-center gap-3">
-                    <div className="w-8 h-px bg-primary/90" />
-                    <span className="font-mono text-[12px] text-neutral-400 tracking-[0.3em] uppercase">Fig. 01</span>
-                  </div>
                 </div>
               </ParallaxSection>
             </div>
+
+            {/* Left — Text Content */}
+            <div>
+              <SectionNumber num="01" />
+
+              <Reveal>
+                <div className="flex flex-wrap gap-0 mb-6">
+                  <TagPill text="Technology" />
+                </div>
+              </Reveal>
+
+              <Reveal delay={0.1}>
+                <h2 className="font-playfair text-white text-4xl md:text-5xl lg:text-6xl tracking-wide leading-[1.1] mb-4">
+                  Precision<br />
+                  <span className="text-primary/80">&amp; Power</span>
+                </h2>
+              </Reveal>
+
+              <Reveal delay={0.15}>
+                <p className="font-cormorant text-neutral-300 text-xl md:text-2xl text-luxury-silver/70 italic mb-10 leading-relaxed">
+                  Instant heat, unmatched control. The future of cooking is here.
+                </p>
+              </Reveal>
+
+              <motion.div
+                className="w-full h-px bg-gradient-to-r bg-white from-primary/20 to-transparent mb-10"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.2, delay: 0.3 }}
+                style={{ originX: 0 }}
+              />
+
+              <Reveal delay={0.2}>
+                <p className="font-cormorant text-neutral-100 text-lg md:text-xl text-luxury-silver/60 leading-relaxed mb-8">
+                  Our advanced induction coils generate precise magnetic fields that heat your cookware directly, not the surface. This results in instantaneous temperature changes, allowing you to go from a gentle simmer to a rolling boil in seconds.
+                </p>
+              </Reveal>
+
+            
+              <Reveal delay={0.4}>
+                <div className="grid grid-cols-3 gap-6 border-t border-primary/10 pt-8">
+                  <div>
+                    <span className="font-mono text-2xl md:text-3xl text-primary/80 font-bold">6.4</span>
+                    <span className="font-mono text-sm text-primary/50 ml-1">kW</span>
+                    <p className="font-inter text-[9px] uppercase tracking-[0.3em] text-primary/50 mt-1">Peak Power</p>
+                  </div>
+                  <div>
+                    <span className="font-mono text-2xl md:text-3xl text-primary/80 font-bold">100</span>
+                    <span className="font-mono text-sm text-primary/50 ml-1">°C</span>
+                    <p className="font-inter text-[9px] uppercase tracking-[0.3em] text-primary/50 mt-1">Max Temperature</p>
+                  </div>
+                  <div>
+                    <span className="font-mono text-2xl md:text-3xl text-primary/80 font-bold">100</span>
+                    <span className="font-mono text-sm text-primary/50 ml-1">%</span>
+                    <p className="font-inter  text-[9px] uppercase tracking-[0.3em] text-primary/50 mt-1">Efficiency</p>
+                  </div>
+                </div>
+              </Reveal>
+            </div>
+
+           
           </div>
         </div>
       </section>
@@ -600,17 +412,55 @@ export default function GoalSection() {
       {/* ═══════════════════════════════════════════
           SECTION 02 — CULINARY MASTERY
           ═══════════════════════════════════════════ */}
-      <section id="section-02" data-section="section-02" className="relative py-32 md:py-48">
-        <div className="absolute top-0 left-0 right-0">
-          <HorizontalLine />
-        </div>
+      <section id="section-02" data-section="section-02" className="relative bg-gradient-to-r from-black/90 via-transparent to-black/90   py-32 md:py-48">
+       
         {/* Subtle bg shift */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             {/* Left — Illustration (flipped layout) */}
-            <div className="relative order-2 lg:order-1">
+            <div className="">
+              <SectionNumber num="02" />
+
+              <Reveal>
+                <div className="flex flex-wrap gap-0 mb-6">
+                  <TagPill text="Art" />
+                </div>
+              </Reveal>
+
+              <Reveal delay={0.1}>
+                <h2 className="font-playfair text-white text-4xl md:text-5xl lg:text-6xl tracking-wide leading-[1.1] mb-4">
+                  Culinary<br />
+                  <span className="text-primary">Mastery</span>
+                </h2>
+              </Reveal>
+
+              <Reveal delay={0.15}>
+                <p className="font-cormorant text-neutral-300 text-xl md:text-2xl text-luxury-silver/70 italic mb-10 leading-relaxed">
+                  Elevate your cooking to an art form. Taste the difference.
+                </p>
+              </Reveal>
+
+              <motion.div
+                className="w-full h-px bg-gradient-to-r from-white to-transparent mb-10"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.2, delay: 0.3 }}
+                style={{ originX: 0 }}
+              />
+
+              <Reveal delay={0.2}>
+                <p className="font-cormorant text-lg md:text-xl text-neutral-100 leading-relaxed mb-8">
+                  Novèlla's precise temperature control empowers you to execute delicate techniques with confidence. Whether it's melting chocolate without seizing, creating a velvety hollandaise, or achieving a perfect sear on a steak.
+                </p>
+              </Reveal>
+
+             
+            </div>
+
+
              {/* Right — Illustration */}
             <div className="relative   ">
 
@@ -630,113 +480,43 @@ export default function GoalSection() {
                     <CulinaryIllustration />
                   </div>
 
-                  {/* Label */}
-                  <div className="absolute -bottom-10 right-0 flex items-center gap-3">
-                    <div className="w-8 h-px bg-primary/90" />
-                    <span className="font-mono text-[12px] text-neutral-400 tracking-[0.3em] uppercase">Fig. 01</span>
-                  </div>
                 </div>
               </ParallaxSection>
             </div>
-            </div>
-
-            {/* Right — Text Content */}
-            <div className="order-1 lg:order-2">
-              <SectionNumber num="02" />
-
-              <Reveal>
-                <div className="flex flex-wrap gap-0 mb-6">
-                  <TagPill text="Art" />
-                </div>
-              </Reveal>
-
-              <Reveal delay={0.1}>
-                <h2 className="font-playfair text-white text-4xl md:text-5xl lg:text-6xl tracking-wide leading-[1.1] mb-4">
-                  Culinary<br />
-                  <span className="text-primary/80">Mastery</span>
-                </h2>
-              </Reveal>
-
-              <Reveal delay={0.15}>
-                <p className="font-cormorant text-neutral-500 text-xl md:text-2xl text-luxury-silver/70 italic mb-10 leading-relaxed">
-                  Elevate your cooking to an art form. Taste the difference.
-                </p>
-              </Reveal>
-
-              <motion.div
-                className="w-full h-px bg-gradient-to-r from-primary/20 to-transparent mb-10"
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.2, delay: 0.3 }}
-                style={{ originX: 0 }}
-              />
-
-              <Reveal delay={0.2}>
-                <p className="font-cormorant text-lg md:text-xl text-neutral-400 leading-relaxed mb-8">
-                  Novèlla's precise temperature control empowers you to execute delicate techniques with confidence. Whether it's melting chocolate without seizing, creating a velvety hollandaise, or achieving a perfect sear on a steak.
-                </p>
-              </Reveal>
-
-              {/* <Reveal delay={0.3}>
-                <p className="font-cormorant text-neutral-400 text-lg md:text-xl text-luxury-silver/60 leading-relaxed mb-12">
-                  Our induction technology provides the exact heat you need, when you need it. Unleash your inner chef and transform every meal into a masterpiece.
-                </p>
-              </Reveal> */}
-
-              {/* Techniques list */}
-              {/* <Reveal delay={0.4}>
-                <div className="space-y-4 border-t border-primary/10 pt-8">
-                  {["Precision Searing", "Gentle Tempering", "Perfect Emulsions", "Rapid Boiling"].map((t, i) => (
-                    <div key={i} className="flex items-center gap-4 group">
-                      <div className="w-1.5 h-1.5 rotate-45 bg-primary/40 group-hover:bg-primary/80 transition-colors duration-300" />
-                      <span className="font-cormorant text-base text-neutral-400 group-hover:text-luxury-silver/80 transition-colors duration-300">{t}</span>
-                    </div>
-                  ))}
-                </div>
-              </Reveal> */}
-            </div>
+          
           </div>
         </div>
       </section>
 
-      {/* ═══ INTERLUDE QUOTE ═══ */}
-      <section className="relative  py-24 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-primary/5 to-transparent" />
-        <div className="absolute inset-0 animate-shimmer" />
-        <div className="relative max-w-4xl mx-auto px-6 md:px-12 text-center">
-          <Reveal>
-            <div className="flex items-center justify-center gap-4 mb-8">
-              <div className="w-12 h-px bg-primary/30" />
-              <div className="w-2 h-2 rotate-45 border border-primary/40" />
-              <div className="w-12 h-px bg-primary/30" />
-            </div>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p className="font-cormorant text-neutral-200 text-2xl md:text-4xl lg:text-5xl font-light italic text-luxury-cream/80 leading-snug">
-              "The pursuit of <span className="text-primary">culinary perfection</span> begins with the right instrument."
-            </p>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <div className="flex items-center justify-center gap-4 mt-8">
-              <div className="w-12 h-px bg-primary/30" />
-              <div className="w-2 h-2 rotate-45 border border-primary/40" />
-              <div className="w-12 h-px bg-primary/30" />
-            </div>
-          </Reveal>
-        </div>
-      </section>
+    
 
       {/* ═══════════════════════════════════════════
           SECTION 03 — SEAMLESS DESIGN
           ═══════════════════════════════════════════ */}
-      <section id="section-03" data-section="section-03" className="relative py-32 md:py-48 ">
-        <div className="absolute top-0 left-0 right-0">
-          <HorizontalLine />
-        </div>
+      <section id="section-03" data-section="section-03" className="relative py-32 md:py-48 bg-gradient-to-r from-black/90 via-transparent to-black/90 ">
+       
 
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+
+             {/* Right — Illustration */}
+            <div className="relative border border-primary/20 p-6 bg-[#1A1A1A]/50">
+              <ParallaxSection className="sticky top-32">
+                <div className="relative">
+                   <div className="absolute -inset-4 border border-primary/40  shadow-[0_10px_10px_10px_rgba(198,30,30,0.2)]" />
+                  <div className="absolute -top-2 -left-2 w-6 h-6 border-t border-l border-primary" />
+                  <div className="absolute -top-2 -right-2 w-6 h-6 border-t border-r border-primary" />
+                  <div className="absolute -bottom-2 -left-2 w-6 h-6 border-b border-l border-primary" />
+                  <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b border-r border-primary" />
+
+                  <div className="relative bg-[#1A1A1A] p-4 md:p-12 aspect-square flex items-center justify-center animate-pulse-glow">
+                    <KitchenSceneIllustration />
+                  </div>
+
+                </div>
+              </ParallaxSection>
+            </div>
+
             {/* Left — Text Content */}
             <div>
               <SectionNumber num="03" />
@@ -755,7 +535,7 @@ export default function GoalSection() {
               </Reveal>
 
               <Reveal delay={0.15}>
-                <p className="font-cormorant text-neutral-500 text-xl md:text-2xl text-luxury-silver/70 italic mb-10 leading-relaxed">
+                <p className="font-cormorant text-neutral-300 text-xl md:text-2xl text-luxury-silver/70 italic mb-10 leading-relaxed">
                   Aesthetic perfection that disappears into your home.
                 </p>
               </Reveal>
@@ -770,7 +550,7 @@ export default function GoalSection() {
               />
 
               <Reveal delay={0.2}>
-                <p className="font-cormorant text-neutral-400 text-lg md:text-xl text-luxury-silver/60 leading-relaxed mb-8">
+                <p className="font-cormorant text-neutral-100 text-lg md:text-xl text-luxury-silver/60 leading-relaxed mb-8">
                   Designed for the modern sophisticate, the Novèlla Induction cooktop integrates flawlessly into any high-end kitchen. Its ultra-slim profile allows for a perfectly flush installation with your countertop, creating an unbroken, elegant surface.
                 </p>
               </Reveal>
@@ -784,10 +564,10 @@ export default function GoalSection() {
               {/* Material pills */}
               <Reveal delay={0.4}>
                 <div className="border-t border-primary/10 pt-8">
-                  <p className="font-inter text-[9px] uppercase tracking-[0.4em] text-neutral-500 mb-4">Compatible Surfaces</p>
+                  <p className="font-inter text-[9px] uppercase tracking-[0.4em] text-neutral-300 mb-4">Compatible Surfaces</p>
                   <div className="flex flex-wrap gap-3">
                     {["Marble", "Quartz", "Granite", "Hardwood", "Ceramic"].map((m) => (
-                      <span key={m} className="font-cormorant text-sm text-neutral-500 border border-primary/15 px-4 py-2 hover:border-primary/30 hover:text-luxury-silver/70 transition-all duration-300 cursor-default">
+                      <span key={m} className="font-cormorant text-sm text-neutral-300 border border-primary/30 px-4 py-2 hover:border-primary/30 hover:text-luxury-silver/70 transition-all duration-300 cursor-default">
                         {m}
                       </span>
                     ))}
@@ -796,33 +576,34 @@ export default function GoalSection() {
               </Reveal>
             </div>
 
-            {/* Right — Illustration */}
-            <div className="relative border border-primary/20 p-6 bg-[#1A1A1A]/50">
-              <ParallaxSection className="sticky top-32">
-                <div className="relative">
-                   <div className="absolute -inset-4 border border-primary/40  shadow-[0_10px_10px_10px_rgba(198,30,30,0.2)]" />
-                  <div className="absolute -top-2 -left-2 w-6 h-6 border-t border-l border-primary" />
-                  <div className="absolute -top-2 -right-2 w-6 h-6 border-t border-r border-primary" />
-                  <div className="absolute -bottom-2 -left-2 w-6 h-6 border-b border-l border-primary" />
-                  <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b border-r border-primary" />
-
-                  <div className="relative bg-[#1A1A1A] p-4 md:p-12 aspect-square flex items-center justify-center animate-pulse-glow">
-                    <KitchenSceneIllustration />
-                  </div>
-
-                  <div className="absolute -bottom-8 right-0 flex items-center gap-3">
-                    <div className="w-8 h-px bg-primary/30" />
-                    <span className="font-mono text-[9px] text-neutral-400 tracking-[0.3em] uppercase">Fig. 03</span>
-                  </div>
-                </div>
-              </ParallaxSection>
-            </div>
+           
           </div>
         </div>
       </section>
 
     
-   
+
+
+     {/* ═══ INTERLUDE QUOTE ═══ */}
+      <section className="relative  py-24 md:py-32 bg-gradient-to-r from-black/90 via-transparent to-black/90 overflow-hidden">
+        <div className="absolute inset-0 " />
+        <div className="absolute inset-0 animate-shimmer" />
+        <div className="relative max-w-4xl mx-auto px-6 md:px-12 text-center">
+     
+          <Reveal delay={0.1}>
+            <p className="font-cormorant text-neutral-200 text-2xl md:text-4xl lg:text-5xl font-light italic text-luxury-cream/80 leading-snug">
+              "The pursuit of <span className="text-primary">culinary perfection</span> begins with the right instrument."
+            </p>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <div className="flex items-center justify-center gap-4 mt-8">
+              <div className="w-12 h-px bg-primary/30" />
+              <div className="w-2 h-2 rotate-45 border border-primary/40" />
+              <div className="w-12 h-px bg-primary/30" />
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
     </div>
   );

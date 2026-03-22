@@ -1,13 +1,9 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { ArrowLeft, Zap, Shield, Timer, Lock, Thermometer, Cpu, Hand, Sparkles, Gauge, Leaf, ChevronDown, ChevronUp, Flame, PlugZap } from "lucide-react";
 import { useInView } from "../hooks/useInView";
 import productHero from "../assets/product-hero.jpeg";
-import productTouch from "../assets/product-touch.jpeg";
 import productLifestyle from "../assets/product-lifestyle.jpeg";
 // import nv410 from "/assets/nv410-product.jpg";
-import Parallax from "../components/ui/Parallax";
-import ParallaxText from "../components/ui/ParallaxText";
 import { Aos } from "../components/ui/aos";
 
 /* ═══════════════════════════════════════════════════
@@ -50,10 +46,10 @@ function CompactCard({ num, title, desc, icon: Icon, delay = 0 }) {
 }
 
 const highlights = [
-  { icon: Zap, label: "Speed", desc: "Boils water in under 90 seconds" },
+  { icon: Zap, label: "Speed", desc: "Boils water in under 120 seconds" },
   { icon: Shield, label: "Safety", desc: "Auto-off & child lock protection" },
 //   { icon: Sparkles, label: "Design", desc: "Sleek frameless black glass" },
-  { icon: Leaf, label: "Eco", desc: "90% energy goes directly to food" },
+  { icon: Leaf, label: "Eco", desc: "99% energy goes directly to food" },
   { icon: Hand, label: "Easy to Use", desc: "Intuitive touch controls" },
 //   { icon: Zap, label: "Speed", desc: "Boils water in under 90 seconds" },
 ];
@@ -61,12 +57,12 @@ const highlights = [
 const specs = [
   { label: "Model", value: "NV-410" },
   { label: "Cooking Zones", value: "4 Burners" },
-  { label: "Max Power", value: "2000W" },
-  { label: "Heat Levels", value: "0 – 9" },
-  { label: "Booster Duration", value: "5 min" },
+  { label: "Max Power", value: "640W – 6400W" },
+  { label: "Heat Levels", value: "0 – 10" },
+  { label: "Booster Duration", value: "2 min" },
   { label: "Timer Range", value: "0 – 99 min" },
   { label: "Voltage", value: "220–240V" },
-  { label: "Surface", value: "Ceramic Glass" },
+  { label: "Surface", value: "All types of surface" },
 ];
 
 const howItWorks = [
@@ -88,8 +84,8 @@ const howItWorks = [
 ];
 
 const features = [
-  { icon: Hand, title: "Touch Controls", desc: "Responsive slider controls for each zone — adjust heat from 0 to 9 with a simple swipe. Everything is under your fingertips." },
-  { icon: Sparkles, title: "Easy Cleaning", desc: "Flat ceramic glass surface with no grooves or grates. Spills don't bake on because the surface stays cool. Just wipe and go." },
+  { icon: Hand, title: "Touch Controls", desc: "Responsive slider controls for each zone — adjust heat from 0 to 10 with a simple swipe. Everything is under your fingertips." },
+  { icon: Sparkles, title: "Easy Cleaning", desc: "All types of surface with no grooves or grates. Spills don't bake on because the surface stays cool. Just wipe and go." },
   { icon: Gauge, title: "Bezel Design", desc: "A sleek, seamless border keeps the aesthetic clean and modern, integrating flawlessly into any countertop." },
   { icon: Timer, title: "Countdown Timer", desc: "Set precise cooking timers up to 99 minutes per zone. Never overcook again — it auto-shuts when time's up." },
   { icon: Lock, title: "Child Lock", desc: "With children and automatic shut-off systems, the child safety lock gives you peace of mind at all times." },
@@ -100,7 +96,7 @@ const comparisonData = [
   { feature: "Induction Cooktop", novella: "Instant", gas: "Slow warm-up" },
   { feature: "Safety", novella: "No flame / Auto-off", gas: "Gas leak risk" },
   { feature: "Cleaning", novella: "One wipe clean", gas: "Requires scrubbing" },
-  { feature: "Energy Efficiency", novella: "90% heat to food", gas: "~40% heat to food" },
+  { feature: "Energy Efficiency", novella: "99% heat to food", gas: "~40% heat to food" },
   { feature: "Speed", novella: "Fast heating", gas: "Gradual heating" },
 ];
 
@@ -115,7 +111,7 @@ const faqs = [
   },
   {
     q: "How much energy does it save compared to gas?",
-    a: "Induction cooking delivers approximately 90% of generated heat directly to the food, compared to about 40% for gas stoves. This translates to significant energy savings over time.",
+    a: "Induction cooking delivers approximately 99% of generated heat directly to the food, compared to about 40% for gas stoves. This translates to significant energy savings over time.",
   },
   {
     q: "Can I install it into my existing countertop?",
@@ -236,7 +232,7 @@ const Products = () => {
                 {/* shadow psht image ka */}
               <div className="absolute -inset-4 bg-primary/10 rounded-2xl blur-xl" />
               <div className="relative border border-border  overflow-hidden">
-                <img src={productLifestyle} alt="Induction cooking in action" className="w-full h-auto object-cover" />
+                <img src={productHero} alt="Induction cooking in action" className="w-full h-auto object-cover" />
               </div>
             </div>
 
@@ -286,7 +282,7 @@ const Products = () => {
             <div className={`relative transition-all duration-1000 ${featIn ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"}`}>
               <div className="absolute -inset-4 bg-primary/10 rounded-2xl blur-xl" />
               <div className="relative border border-border  overflow-hidden product-img-container">
-                <img src={productTouch} alt="NV-410 Touch Controls" className="w-full h-auto object-cover" />
+                <img src={productLifestyle} alt="NV-410 Touch Controls" className="w-full h-auto object-cover" />
               </div>
             </div>
             <div className={`transition-all duration-1000 delay-200 ${featIn ? "opacity-100 translate-x-0" : "opacity-0 translate-x-12"}`}>

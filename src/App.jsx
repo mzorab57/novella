@@ -22,8 +22,8 @@ function HomePage() {
       <Hero />
       <Kondo />
       <OnwardSection />
-      <GoalSection />
       <OurStory />
+      <GoalSection />
       
       {/* <Wave /> */}
     </div>

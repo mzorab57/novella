@@ -83,8 +83,8 @@ const whyReasons = [
   },
   {
     icon: Wrench,
-    title: "Technical Support & Fabric Samples",
-    desc: "We don't just sell products — we provide technical guidance, fabric samples, and a dedicated team ready for any project need.",
+    title: "Technical Support & Surface Samples",
+    desc: "We don't just sell products — we provide technical guidance, surface samples, and a dedicated team ready for any project need.",
   },
   {
     icon: Shield,
@@ -463,82 +463,6 @@ const InquiryForm = () => {
   );
 };
 
-/* ─── FAQ ─── */
-const faqs = [
-  {
-    q: "What is the minimum order for B2B partnerships?",
-    a: "There is no strict minimum — we work with projects of all sizes, from single-unit installations to large-scale developments.",
-  },
-  {
-    q: "Do you provide installation support?",
-    a: "Yes. Our technical team provides full installation guidance, and we can coordinate with your contractors on-site.",
-  },
-  {
-    q: "Can I get product samples for my showroom?",
-    a: "Absolutely. We offer demo units and marketing materials for authorized showroom partners.",
-  },
-  {
-    q: "What warranty do B2B customers receive?",
-    a: "All B2B partners receive our standard 2-year warranty, with options for extended coverage on bulk orders.",
-  },
-];
-
-const FAQSection = () => {
-  const { ref, isInView } = useInView();
-  const [openIdx, setOpenIdx] = useState(null);
-
-  return (
-    <section className="py-32 bg-background relative overflow-hidden">
-      <div className="absolute inset-0 bg-grid opacity-20" />
-
-      <div
-        ref={ref}
-        className={`relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 transition-all duration-700 ${
-          isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-        }`}
-      >
-        <div className="text-center mb-14">
-         
-          <h2 className="font-montserrat  text-4xl sm:text-5xl text-foreground">
-            COMMON <span className="text-gradient-red">QUESTIONS</span>
-          </h2>
-        </div>
-
-        <div className="space-y-4">
-          {faqs.map(({ q, a }, i) => (
-            <div
-              key={i}
-              className={`border border-border rounded-xl overflow-hidden transition-all duration-500 ${
-                isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-              } ${openIdx === i ? "border-primary/30" : ""}`}
-              style={{ transitionDelay: `${i * 0.1}s` }}
-            >
-              <button
-                onClick={() => setOpenIdx(openIdx === i ? null : i)}
-                className="w-full flex items-center justify-between p-6 text-left hover:bg-card/50 transition-colors"
-              >
-                <span className="font-montserrat font-semibold text-foreground text-sm">{q}</span>
-                <span
-                  className={`text-primary transition-transform duration-300 ${openIdx === i ? "rotate-45" : ""}`}
-                >
-                  +
-                </span>
-              </button>
-              <div
-                className={`overflow-hidden transition-all duration-500 ${
-                  openIdx === i ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
-                }`}
-              >
-                <p className="px-6 pb-6 text-muted-foreground text-sm leading-relaxed">{a}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
 /* ─── Main Page ─── */
 const B2B = () => (
   <div className="bg-background min-h-screen">
@@ -548,7 +472,6 @@ const B2B = () => (
     <PartnersSection />
     <ProcessSection />
     {/* <InquiryForm /> */}
-    <FAQSection />
     {/* <Footer /> */}
   </div>
 );

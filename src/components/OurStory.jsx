@@ -9,9 +9,9 @@ const OurStory = () => {
    const { ref: storyRef, isInView: storyIn } = useInView();
   return (
     
-         <section className="py-32 relative overflow-hidden">
+         <section className="py-32 relative overflow-hidden bg-gradient-to-r from-black/90 via-transparent to-black/90">
            <div className="absolute inset-0 bg-grid opacity-10" />
-           <div className="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-primary/5 to-transparent" />
+           {/* <div className="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-primary/5 to-transparent" /> */}
    
            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
              <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -31,12 +31,12 @@ const OurStory = () => {
                  </h2>
    
                  <div className="space-y-6">
-                   <p className="text-muted-foreground text-lg leading-relaxed">
+                   <p className="text-muted-foreground text-lg text-neutral-200 leading-relaxed">
                      At Novella, we believe that a kitchen is not just a place to prepare food — it's a
                      home. It's where families gather, where creativity flourishes, and where memories are
                      crafted over the warmth of a shared meal.
                    </p>
-                   <p className="text-muted-foreground leading-relaxed">
+                   {/* <p className="text-muted-foreground leading-relaxed">
                      Our story is one of relentless pursuit: to preserve the heritage of Italian
                      craftsmanship while embracing the latest in induction technology. Every piece that
                      bears the Novella name has been designed with a clear purpose — to bring the art of
@@ -46,7 +46,7 @@ const OurStory = () => {
                      From our first sketch to the final product, Novella has been driven by an unwavering
                      ambition: to merge beauty with precision, tradition with innovation, and elegance
                      with everyday function.
-                   </p>
+                   </p> */}
                  </div>
    
                  <div className="mt-10 flex items-center gap-6">
