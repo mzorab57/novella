@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Mail, Send, Globe } from "lucide-react";
+import { Mail, Send, Globe, MessageCircle } from "lucide-react";
 import { useInView } from "../hooks/useInView";
 
 const contactInfo = [
-  { icon: Globe, label: "Website", value: "novella-inc.com", href: "https://novella-inc.com/" },
-  { icon: Mail, label: "Email", value: "contact@novella-inc.com", href: "mailto:info@novella-inc.com" },
+
+  { icon: MessageCircle, label: "WhatsApp", value: "+9647703655452", href: "https://wa.me/9647703655452" },
+  { icon: Mail, label: "Email", value: "info@novella-inc.com", href: "mailto:info@novella-inc.com" },
 ];
 
 const Contact = () => {

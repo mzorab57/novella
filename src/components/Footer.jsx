@@ -1,79 +1,125 @@
 import { Link } from "react-router-dom";
+import { Globe, Mail, MapPin, MessageCircle, Phone, Facebook, Instagram, Twitter } from "lucide-react";
 import novellaLogo from "../../public/assets/images/logo.jpeg";
 
+// Data objects remain the same, which is great for maintenance
 const footerLinks = {
   "Product": [{link:"nv-410-smart-hub"}, {link:"specifications"}, {link:"features"}, {link:"safety-guide"}],
-  "Company": [{link:"about"}, {link:"b2b"}, {link:"products"}, {link:"contact"}],
-//   "Support": ["Installation Guide", "Warranty", "FAQ", "Technical Support"],
+  "Company": [{link:"about"}, {link:"b2b"}, {link:"products"}, {link:"contact"}, {link:"gallery"}],
 };
+
+const contactItems = [
+  { icon: Phone, label: "Mobile", value: "+964 770 365 5545", href: "tel:+9647703655545" },
+  { icon: Mail, label: "Email", value: "info@novella-inc.com", href: "mailto:info@novella-inc.com" },
+  { icon: MapPin, label: "Location", value: "Erbil, Iraq", href: "#" },
+];
+
+const socialLinks = [
+    { icon: MessageCircle, label: "WhatsApp", href: "https://wa.me/9647703655452" },
+    { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/zirak.decorr?igsh=eHNqZ2psb3k4NnAy&utm_source=qr" }, // Add your link
+    // { icon: Facebook, label: "Facebook", href: "#" }, // Add your link
+];
+
+// Reusable component for section titles
+const FooterTitle = ({ children }) => (
+  <h4 className="font-montserrat font-semibold text-sm tracking-[0.2em] uppercase text-neutral-400 mb-6">
+    {children}
+  </h4>
+);
 
 const Footer = () => {
   return (
-    <footer className="bg-card relative border-t border-border pt-20 pb-8">
-         
-     
-        
-     
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col lg:flex-row justify-between lg:px-8">
-       
-          {/* Brand */}
-          <div className="">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="size-20 rounded-lg overflow-hidden border border-primary/20">
-                <img src={novellaLogo} alt="Novella" className="w-full h-full object-cover" />
+    <footer className="bg-black relative text-neutral-300 border-t border-white/10 pt-20 pb-8">
+      {/* Subtle top gradient line for a premium feel */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+
+      {/* Main footer content */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          
+          {/* Column 1: Brand Info */}
+          <div className="md:col-span-2 lg:col-span-1">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="size-16 rounded-xl overflow-hidden border-2 border-primary/20 p-1">
+                <img src={novellaLogo} alt="Novella Logo" className="w-full h-full object-cover rounded-lg" />
               </div>
               <div>
-                <div className="font-montserrat font-black text-lg tracking-widest text-foreground">NOVÉLLA</div>
-                <div className="text-xs text-muted-foreground tracking-[0.2em]">wave of innovation</div>
+                <div className="font-montserrat font-bold text-xl tracking-widest text-white">NOVÉLLA</div>
+                <div className="text-xs text-neutral-400 tracking-[0.2em] mt-1">wave of innovation</div>
               </div>
             </div>
-            <p className="text-muted-foreground text-sm leading-relaxed max-w-xs mb-6">
-              Redefining the cooking experience through precision induction technology, 
-              seamless design, and uncompromising safety.
+            <p className="text-neutral-400 text-sm leading-relaxed max-w-xs">
+              Redefining cooking with precision induction technology and seamless Italian design.
             </p>
-           
           </div>
- <div className="grid grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
-          {/* Links */}
+
+          {/* Column 2 & 3: Links */}
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
-              <h4 className="font-montserrat  font-bold text-xs tracking-[0.2em] uppercase text-foreground mb-5">{category}</h4>
+              <FooterTitle>{category}</FooterTitle>
               <ul className="space-y-3">
-                {links.map((link) => (
+                {links.map(({ link }) => (
                   <li key={link}>
-                    <Link onClick={() => {
-                      if (category === "Company") {
-                        window.scrollTo({ top: 0, behavior: "smooth" });
-                      }
-                    }} to={`/${category === "Company" ? link.link : ''}`} className="text-muted-foreground uppercase text-sm hover:text-primary transition-colors nav-link-hover">  
-                      {link.link}
+                    <Link
+                      to={`/${category.toLowerCase()}/${link}`}
+                      className="text-neutral-400 capitalize text-sm transition-all duration-300 hover:text-white hover:pl-2"
+                    >
+                      {link.replace(/-/g, ' ')}
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
           ))}
-        </div>
 
+          {/* Column 4: Connect */}
+          <div>
+            <FooterTitle>Connect</FooterTitle>
+            <ul className="space-y-4">
+              {contactItems.map(({ icon: Icon, label, value, href }) => (
+                <li key={label}>
+                  <a href={href} className="flex items-center gap-3 group">
+                    <Icon size={16} className="text-primary transition-colors group-hover:text-white" />
+                    <span className="text-sm text-neutral-400 transition-colors group-hover:text-white">{value}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+        </div>
       </div>
-        {/* Bottom */}
-        {/* <div className="border-t border-border max-w-7xl mx-auto pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="absolute -z-10 top-0 inset-0 bg-gradient-to-t from-primary/15 via-transparent to-transparent" />
-   
-          <p>&copy; {new Date().getFullYear()} NOVÉLLA all rights reserved.</p>
-          <p className="mt-1">
-            Powered by{" "}
-            <a 
-              href="https://wa.me/96407701411893"
+
+      {/* Bottom bar: Copyright and Social Icons */}
+      <div className="border-t border-white/10 mt-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <p className="text-sm text-neutral-500 text-center md:text-left">
+            &copy; {new Date().getFullYear()} Novella Inc. All rights reserved. Developed by{" "}
+            <a
+              href="https://wa.me/9647701411893"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary hover:underline "
+              className="text-primary/70 transition-colors hover:text-primary font-medium"
             >
               Al-Code
             </a>
           </p>
-        
-        </div> */}
+          <div className="flex items-center justify-center gap-4">
+            {socialLinks.map(({ icon: Icon, label, href }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={label}
+                className="size-10 flex items-center justify-center rounded-full bg-neutral-800/50 text-neutral-400 transition-all duration-300 hover:bg-primary hover:text-white hover:scale-110"
+              >
+                <Icon size={18} />
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
     </footer>
   );
 };

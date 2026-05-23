@@ -44,6 +44,7 @@ const Navbar = () => {
     { to: "/", label: "Home" },
     { to: "/goal", label: "GOAL" },
     { to: "/products", label: "PRODUCTS" },
+    { to: "/gallery", label: "GALLERY" },
     { to: "/b2b", label: "B2B" },
     { to: "/about", label: "ABOUT US" },
     { to: "/contact", label: "CONTACT US" },

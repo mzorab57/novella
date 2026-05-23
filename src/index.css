@@ -368,3 +368,5 @@ html[data-aos-enabled="false"] [data-aos] {
 .aos-frame.aos-animate .aos-frame-line--right { animation: novellaFrameLineY 650ms ease-out 120ms forwards; }
 .aos-frame.aos-animate .aos-frame-line--bottom { animation: novellaFrameLineX 650ms ease-out 240ms forwards; }
 .aos-frame.aos-animate .aos-frame-line--left { animation: novellaFrameLineY 650ms ease-out 360ms forwards; }
+
+

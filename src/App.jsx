@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import Products from "./pages/Products";
 import B2B from "./pages/B2B";
 import About from "./pages/About";
+import Gallery from "./pages/Gallery";
 import OurStory from "./components/OurStory";
 import Contact from "./pages/Contact";
 import Footer from "./components/Footer";
@@ -39,6 +40,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/goal" element={<GoalPage />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/gallery" element={<Gallery />} />
           <Route path="/b2b" element={<B2B />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
