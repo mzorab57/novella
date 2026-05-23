@@ -9,13 +9,13 @@ const footerLinks = {
 };
 
 const contactItems = [
-  { icon: Phone, label: "Mobile", value: "+964 770 365 5545", href: "tel:+9647703655545" },
+  { icon: Phone, label: "Mobile", value: "+964 770 1967400", href: "tel:+9647701967400" },
   { icon: Mail, label: "Email", value: "info@novella-inc.com", href: "mailto:info@novella-inc.com" },
-  { icon: MapPin, label: "Location", value: "Erbil, Iraq", href: "#" },
+  { icon: MapPin, label: "Location", value: "Iraq, Sulaymaniyah, Malik Mahmud Ring Road", href: "https://maps.app.goo.gl/QE1MWqRPyUc7xkBL6" },
 ];
 
 const socialLinks = [
-    { icon: MessageCircle, label: "WhatsApp", href: "https://wa.me/9647703655452" },
+    { icon: MessageCircle, label: "WhatsApp", href: "https://wa.me/9647701967400" },
     { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/zirak.decorr?igsh=eHNqZ2psb3k4NnAy&utm_source=qr" }, // Add your link
     // { icon: Facebook, label: "Facebook", href: "#" }, // Add your link
 ];

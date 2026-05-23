@@ -4,7 +4,7 @@ import { useInView } from "../hooks/useInView";
 
 const contactInfo = [
 
-  { icon: MessageCircle, label: "WhatsApp", value: "+9647703655452", href: "https://wa.me/9647703655452" },
+  { icon: MessageCircle, label: "WhatsApp", value: "+9647701967400", href: "https://wa.me/9647701967400" },
   { icon: Mail, label: "Email", value: "info@novella-inc.com", href: "mailto:info@novella-inc.com" },
 ];
 
